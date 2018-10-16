@@ -22,4 +22,11 @@ devtools::load_all("../ebnm")
 ```
 
 # `ebnm_normal` Testing
-In this section, we test the `ebnm_normal` function.
+In this section, we test the `ebnm_normal` function. This function assumes that data are generated from the following model:
+$$
+\begin{aligned}
+\theta_j \stackrel{iid}{\sim} \mathcal{N}\Big(\mu, \frac1a\Big) \\
+x_j \stackrel{\perp}{\sim} \mathcal{N}\Big(\theta_j, s_j^2\Big)
+\end{aligned}
+$$
+The $x_j$ and $s_j$ are supplied to the `enbm_normal` function, which then finds the MLE estimates $\hat{\mu}$ and $\hat{a}$ and provides posterior estimates for first and second moments of $\theta_j$.
