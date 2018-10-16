@@ -12,5 +12,14 @@ knitr::opts_chunk$set(echo = T, error = F, warning = F, message = F, results = '
 ```
 
 # Introduction
-This code executes the `ebnm` functions on simulated data. We simulate data according to different generating processes, and test the speed and accuracy of `ebnm_normal`, `ebnm_point_normal`, and `ebnm_point_laplace` functions.
+This code executes the functions in the `ebnm` package on simulated data. We simulate data according to different generating processes, and test the speed and accuracy of `ebnm_normal`, `ebnm_point_normal`, and `ebnm_point_laplace` functions.
 
+```{r}
+# Load required packages
+library(workflowr)
+library(microbenchmark)
+devtools::load_all("../ebnm")
+```
+
+# `ebnm_normal` Testing
+In this section, we test the `ebnm_normal` function.
