@@ -1,0 +1,16 @@
+---
+title: "EBNM Benchmarking"
+author: "Andrew Goldstein"
+date: "October 16, 2018"
+output:
+  workflowr::wflow_html:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, error = F, warning = F, message = F, results = 'asis', fig.align = 'center')
+```
+
+# Introduction
+This code executes the `ebnm` functions on simulated data. We simulate data according to different generating processes, and test the speed and accuracy of `ebnm_normal`, `ebnm_point_normal`, and `ebnm_point_laplace` functions.
+
