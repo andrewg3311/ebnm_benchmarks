@@ -54,7 +54,7 @@ calc_res = function(ebnm_fn, x, s, theta, g_start = NULL) {
 
 # This function simulates data B times, each time calculating the total computation time, the estimated values for mu and a, the MSE of the posterior mean in trying to recover theta, and the loglikelihood. Different starting values can be manually specified
 # benchmark_name should be used when comparing different benchmark results
-benchmark_ebnm_normal = function(ebnm_fn = ebnm_normal, B = 1000, n = 1000, mu = 0, a = .25, pi0 = 0, s_alpha = 2, s_beta = 20, g_start = NULL, bench_times = 5, bench_name = "", seed = 1138) {
+benchmark_ebnm_normal = function(ebnm_fn, B = 1000, n = 1000, mu = 0, a = .25, pi0 = 0, s_alpha = 2, s_beta = 20, g_start = NULL, bench_times = 5, bench_name = "", seed = 1138) {
   set.seed(seed)
   
   par_names = names(ebnm_fn(c(1,1), c(1, 1))$fitted_g) # c("mu", "a") or c("pi0", "a")
@@ -82,7 +82,7 @@ benchmark_ebnm_normal = function(ebnm_fn = ebnm_normal, B = 1000, n = 1000, mu =
 # These should all have been run with the same parameter values, same seed, etc for consistency
 compare_res = function(res_list, true_par1, true_par2) {
   n = length(res_list)
-  cols = brewer.pal(n, "Dark2")
+  cols = brewer.pal(n, "Dark2")[1:n]
   res_df = bind_rows(res_list)
   par_names = colnames(res_df)[2:3]
   
@@ -157,12 +157,38 @@ Here, I simulate data from the above distribution and test the speed and accurac
 mu = 0
 a = .25
 
-res_list = list(benchmark_ebnm_normal(B=100, bench_name = "Default Start", mu = mu, a = a), 
-                benchmark_ebnm_normal(B=100, g_start = list(mu = mu, a = a), bench_name = "Truth Start", mu = mu, a = a),
-                benchmark_ebnm_normal(B=100, g_start = list(mu = 1, a = 1), bench_name = "(1, 1) Start", mu = mu, a = a), 
-                benchmark_ebnm_normal(B=100, g_start = list(mu = -1, a = 1), bench_name = "(-1, 1) Start", mu = mu, a = a), 
-                benchmark_ebnm_normal(B=100, g_start = list(mu = 100, a = .25), bench_name = "(100, .25) Start", mu = mu, a = a), 
-                benchmark_ebnm_normal(B=100, g_start = list(mu = 0, a = 100), bench_name = "(0, 100) Start", mu = mu, a = a))
+res_list_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, bench_name = "Default Start", mu = mu, a = a), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = mu, a = a), bench_name = "(mu, a) Start", mu = mu, a = a),
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 1, a = 1), bench_name = "(1, 1) Start", mu = mu, a = a), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = -1, a = 1), bench_name = "(-1, 1) Start", mu = mu, a = a), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 100, a = a), bench_name = "(100, a) Start", mu = mu, a = a), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 0, a = 100), bench_name = "(mu, 100) Start", mu = mu, a = a))
 
-compare_res(res_list, mu, a)
+compare_res(res_list_normal, mu, a)
+```
+
+
+# `ebnm_point_normal` Testing
+In this section, we test the `ebnm_point_normal` function. This function assumes that data are generated from the following model:
+$$
+\begin{aligned}
+\theta_j \stackrel{iid}{\sim} \pi_0 \delta_0 + (1 - \pi_0)\mathcal{N}\Big(0, \frac1a\Big) \\
+x_j \stackrel{\perp}{\sim} \mathcal{N}\Big(\theta_j, s_j^2\Big)
+\end{aligned}
+$$
+The $x_j$ and $s_j$ are supplied to the `enbm_point_normal` function, which then finds the MLE estimates $\hat{\pi_0}$ and $\hat{a}$ and provides posterior estimates for the first and second moments of $\theta_j$.
+
+Here, I simulate data from the above distribution and test the speed and accuracy at different starting points for the optimization problem. 
+```{r}
+pi0 = .8
+a = .25
+
+res_list_point_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, bench_name = "Default Start", pi0 = pi0, a = a), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = a), bench_name = "(pi0, a) Start", pi0 = pi0, a = a),
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 1, a = a), bench_name = "(1, a) Start", pi0 = pi0, a = a), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 0, a = a), bench_name = "(0, a) Start", pi0 = pi0, a = a), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 1e-5), bench_name = "(pi0, 1e-5) Start", pi0 = pi0, a = a), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 50), bench_name = "(pi0, 50) Start", pi0 = pi0, a = a))
+
+compare_res(res_list_point_normal, pi0, a)
 ```
