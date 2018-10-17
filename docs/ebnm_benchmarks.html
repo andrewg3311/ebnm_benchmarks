@@ -364,19 +364,13 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/4d985f1416454385644da1619b61a38b1e22c72c" target="_blank">4d985f1</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/cd2594afd48731628e0f87054c25f54868615b2e" target="_blank">cd2594a</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.Rhistory
-
-Untracked files:
-    Untracked:  docs/figure/
-
-Unstaged changes:
-    Deleted:    ebnm_benchmarks.Rmd
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
@@ -405,6 +399,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/cd2594afd48731628e0f87054c25f54868615b2e/analysis/ebnm_benchmarks.Rmd" target="_blank">cd2594a</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+<td style="text-align:left;">
+Adding some try statements, still pretty rough though
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/andrewg3311/ebnm_benchmarks/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/ebnm_benchmarks.html" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+<td style="text-align:left;">
+New comparison run
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -574,49 +602,65 @@ compare_res = function(res_list, true_par1, true_par2) {
   
   # par1 (pi0 or mu)
   ## all on one plot
+  
   d = res_list[[1]][, par_names[1]]
-  plot(density(d), xlab = paste(&quot;MLE Estimate for &quot;, par_names[1], sep = &quot;&quot;), main = paste(&quot;Density of Estimates for &quot;, par_names[1], sep = &quot;&quot;), col = cols[1], xlim = range(res_df[, par_names[1]], finite = T) , ylim = c(0, min(10, 1.1 * max(density(d)$y))), lwd = 2)
+  try({
+    plot(density(d), xlab = paste(&quot;MLE Estimate for &quot;, par_names[1], sep = &quot;&quot;), main = paste(&quot;Density of Estimates for &quot;, par_names[1], sep = &quot;&quot;), col = cols[1], xlim = range(res_df[, par_names[1]], finite = T) , ylim = c(0, min(10, 1.1 * max(density(d)$y))), lwd = 2)
+  })
   for (i in 2:n) {
-    d = res_list[[i]][, par_names[1]]
-    lines(density(d), col = cols[i], lwd = 2)
+    try({
+      d = res_list[[i]][, par_names[1]]
+      lines(density(d), col = cols[i], lwd = 2)
+    })
   }
-  abline(v = true_par1, col = &quot;red&quot;)
-  legend(&quot;topright&quot;, legend = c(unique(res_df$name), &quot;Truth&quot;), fill = c(cols, &quot;red&quot;), bty = &quot;n&quot;)
+  try({
+    abline(v = true_par1, col = &quot;red&quot;)
+    legend(&quot;topright&quot;, legend = c(unique(res_df$name), &quot;Truth&quot;), fill = c(cols, &quot;red&quot;), bty = &quot;n&quot;)
+  })
   
   ## all on different plots
   for (i in 1:n) {
-    d = res_list[[i]][, par_names[1]]
-    hist(d, xlab = paste(&quot;MLE Estimate for &quot;, par_names[1], sep = &quot;&quot;), main = paste(&quot;Estimates for &quot;, par_names[1], &quot;: run &quot;, unique(res_list[[i]]$name), sep = &quot;&quot;))
-    abline(v = true_par1, col = &quot;red&quot;)
+    try({
+        d = res_list[[i]][, par_names[1]]
+        hist(d, xlab = paste(&quot;MLE Estimate for &quot;, par_names[1], sep = &quot;&quot;), main = paste(&quot;Estimates for &quot;, par_names[1], &quot;: run &quot;, unique(res_list[[i]]$name), sep = &quot;&quot;))
+        abline(v = true_par1, col = &quot;red&quot;)
+    })
   }
   
   # par2 (a)
   ## all on one plot
   d = res_list[[1]][, par_names[2]]
   plot_ind = (abs(d - true_par2) / true_par2 &lt;= 2)
-  
-  plot(density(d[plot_ind]), xlab = paste(&quot;MLE Estimate for &quot;, par_names[2], sep = &quot;&quot;), main = paste(&quot;Density of Estimates for &quot;, par_names[2], sep = &quot;&quot;), col = cols[1], xlim = range(res_df[, par_names[2]], finite = T), ylim = c(0, min(10, 1.1 * max(density(d[plot_ind])$y))), lwd = 2)
-  if (sum(!plot_ind) &gt; 1) { # if relative error &gt; 200%
-    warning(paste(&quot;Some fitted values for &quot;, par_names[2], &quot; in run &quot;, unique(res_list[[1]]$name), &quot; were very far from the true value. These should be inspected more closely&quot;, sep = &quot;&quot;))
-  }
-  for (i in 2:n) {
-    d = res_list[[i]][, par_names[2]]
-    plot_ind = (abs(d - true_par2) / true_par2 &lt;= 2)
-    
-    lines(density(d[plot_ind]), col = cols[i], lwd = 2)
+  try({
+    plot(density(d[plot_ind]), xlab = paste(&quot;MLE Estimate for &quot;, par_names[2], sep = &quot;&quot;), main = paste(&quot;Density of Estimates for &quot;, par_names[2], sep = &quot;&quot;), col = cols[1], xlim = range(res_df[, par_names[2]], finite = T), ylim = c(0, min(10, 1.1 * max(density(d[plot_ind])$y))), lwd = 2)
     if (sum(!plot_ind) &gt; 1) { # if relative error &gt; 200%
-      warning(paste(&quot;Some fitted values for &quot;, par_names[2], &quot; in run &quot;, unique(res_list[[i]]$name), &quot; were very far from the true value. These should be inspected more closely&quot;, sep = &quot;&quot;))
+      warning(paste(&quot;Some fitted values for &quot;, par_names[2], &quot; in run &quot;, unique(res_list[[1]]$name), &quot; were very far from the true value. These should be inspected more closely&quot;, sep = &quot;&quot;))
     }
+  })
+  for (i in 2:n) {
+    try({
+      d = res_list[[i]][, par_names[2]]
+      plot_ind = (abs(d - true_par2) / true_par2 &lt;= 2)
+      lines(density(d[plot_ind]), col = cols[i], lwd = 2)
+      if (sum(!plot_ind) &gt; 1) { # if relative error &gt; 200%
+        warning(paste(&quot;Some fitted values for &quot;, par_names[2], &quot; in run &quot;, unique(res_list[[i]]$name), &quot; were very far from the true value. These should be inspected more closely&quot;, sep = &quot;&quot;))
+      }
+    })
+
     #if (sum(plot_ind)) ADD CONDITION THAT IF TOO MANY ARE BAD, SKIP AND GIVE WARNING
   }
-  abline(v = true_par2, col = &quot;red&quot;)
-  legend(&quot;topright&quot;, legend = c(unique(res_df$name), &quot;Truth&quot;), fill = c(cols, &quot;red&quot;), bty = &quot;n&quot;)
+  try({
+    abline(v = true_par2, col = &quot;red&quot;)
+    legend(&quot;topright&quot;, legend = c(unique(res_df$name), &quot;Truth&quot;), fill = c(cols, &quot;red&quot;), bty = &quot;n&quot;)
+  })
   
     ## all on different plots
   for (i in 1:n) {
-    d = res_list[[i]][, par_names[2]]
-    hist(d, xlab = paste(&quot;MLE Estimate for &quot;, par_names[2], sep = &quot;&quot;), main = paste(&quot;Estimates for &quot;, par_names[2], &quot;: run &quot;, unique(res_list[[i]]$name), sep = &quot;&quot;))
-    abline(v = true_par2, col = &quot;red&quot;)
+    try({
+      d = res_list[[i]][, par_names[2]]
+      hist(d, xlab = paste(&quot;MLE Estimate for &quot;, par_names[2], sep = &quot;&quot;), main = paste(&quot;Estimates for &quot;, par_names[2], &quot;: run &quot;, unique(res_list[[i]]$name), sep = &quot;&quot;))
+      abline(v = true_par2, col = &quot;red&quot;)
+    })
   }
 }</code></pre>
 </div>
@@ -640,14 +684,524 @@ a = .25</code></pre>
                 benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 0, a = 100), bench_name = &quot;(mu, 100) Start&quot;, mu = mu, a = a))
 
 compare_res(res_list_normal, mu, a)</code></pre>
-<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-10.png" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Warning in compare_res(res_list_normal, mu, a): Some fitted values for a
-in run Default Start were very far from the true value. These should be
-inspected more closely</code></pre>
-<pre><code>Warning in compare_res(res_list_normal, mu, a): Some fitted values for a
-in run (100, a) Start were very far from the true value. These should be
-inspected more closely</code></pre>
-<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-16.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-17.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-1.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-2.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-3.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-3.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-4.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-4.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-4.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-5.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-5.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-5.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-6.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-6.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-6.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-7.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-7.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-7.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-8.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-8.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-8.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-9.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-9.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-9.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-10.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-10.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-10.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
+<pre><code>Warning in doTryCatch(return(expr), name, parentenv, handler): Some fitted
+values for a in run Default Start were very far from the true value. These
+should be inspected more closely</code></pre>
+<pre><code>Warning in doTryCatch(return(expr), name, parentenv, handler): Some fitted
+values for a in run (100, a) Start were very far from the true value. These
+should be inspected more closely</code></pre>
+<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-11.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-11.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-11.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-12.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-12.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-12.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-13.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-13.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-13.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-14.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-14.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-14.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-15.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-15.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-15.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-16.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-16.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-16.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-17.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-17.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-17.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 </div>
 <div id="ebnm_point_normal-testing" class="section level1">
 <h1><code>ebnm_point_normal</code> Testing</h1>
@@ -669,9 +1223,320 @@ a = .25</code></pre>
                 benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 50), bench_name = &quot;(pi0, 50) Start&quot;, pi0 = pi0, a = a))
 
 compare_res(res_list_point_normal, pi0, a)</code></pre>
-<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-9.png" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Error in density.default(d[plot_ind]): need at least 2 points to select a bandwidth automatically</code></pre>
+<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-1.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-2.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-2.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-3.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-3.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-4.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-4.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-4.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-5.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-5.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-5.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-6.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-6.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-6.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-7.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-7.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-7.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-8.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-8.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-8.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-9.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-9.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-9.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
+<pre><code>Warning in doTryCatch(return(expr), name, parentenv, handler): Some fitted
+values for a in run (pi0, a) Start were very far from the true value. These
+should be inspected more closely</code></pre>
+<pre><code>Warning in doTryCatch(return(expr), name, parentenv, handler): Some fitted
+values for a in run (1, a) Start were very far from the true value. These
+should be inspected more closely</code></pre>
+<pre><code>Warning in doTryCatch(return(expr), name, parentenv, handler): Some fitted
+values for a in run (0, a) Start were very far from the true value. These
+should be inspected more closely</code></pre>
+<pre><code>Warning in doTryCatch(return(expr), name, parentenv, handler): Some fitted
+values for a in run (pi0, 50) Start were very far from the true value.
+These should be inspected more closely</code></pre>
 <p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-10.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-10.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-10.png" target="_blank">2fbe0ac</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-16.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
@@ -694,7 +1559,7 @@ compare_res(res_list_point_normal, pi0, a)</code></pre>
 [28] xml2_1.2.0 devtools_1.13.6 grid_3.5.1<br />
 [31] rprojroot_1.3-2 tidyselect_0.2.4 glue_1.3.0<br />
 [34] R6_2.3.0 rmarkdown_1.10 purrr_0.2.5<br />
-[37] ashr_2.2-7 magrittr_1.5 whisker_0.3-2<br />
+[37] ashr_2.2-19 magrittr_1.5 whisker_0.3-2<br />
 [40] MASS_7.3-50 codetools_0.2-15 backports_1.1.2<br />
 [43] htmltools_0.3.6 assertthat_0.2.0 stringi_1.2.4<br />
 [46] pscl_1.5.2 doParallel_1.0.14 truncnorm_1.0-8<br />
