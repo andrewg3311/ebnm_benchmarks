@@ -124,6 +124,7 @@ compare_res = function(res_list, true_par1, true_par2) {
   for (i in 1:n) {
     d = res_list[[i]][, par_names[1]]
     hist(d, xlab = paste("MLE Estimate for ", par_names[1], sep = ""), main = paste("Estimates for ", par_names[1], ": run ", unique(res_list[[i]]$name), sep = ""))
+    abline(v = true_par1, col = "red")
   }
   
   # par2 (a)
@@ -152,6 +153,7 @@ compare_res = function(res_list, true_par1, true_par2) {
   for (i in 1:n) {
     d = res_list[[i]][, par_names[2]]
     hist(d, xlab = paste("MLE Estimate for ", par_names[2], sep = ""), main = paste("Estimates for ", par_names[2], ": run ", unique(res_list[[i]]$name), sep = ""))
+    abline(v = true_par2, col = "red")
   }
 }
 ```
