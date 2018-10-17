@@ -169,11 +169,14 @@ x_j \stackrel{\perp}{\sim} \mathcal{N}\Big(\theta_j, s_j^2\Big)
 $$
 The $x_j$ and $s_j$ are supplied to the `enbm_normal` function, which then finds the MLE estimates $\hat{\mu}$ and $\hat{a}$ and provides posterior estimates for the first and second moments of $\theta_j$.
 
-Here, I simulate data from the above distribution and test the speed and accuracy at different starting points for the optimization problem. 
+Here, I simulate data from the above distribution and test the speed and accuracy at different starting points for the optimization problem.
 ```{r}
 mu = 0
 a = .25
+```
+The true value for $\mu$ is `r mu`, and the true value for $a$ is `r a`.
 
+```{r}
 res_list_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, bench_name = "Default Start", mu = mu, a = a), 
                 benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = mu, a = a), bench_name = "(mu, a) Start", mu = mu, a = a),
                 benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 1, a = 1), bench_name = "(1, 1) Start", mu = mu, a = a), 
@@ -199,7 +202,10 @@ Here, I simulate data from the above distribution and test the speed and accurac
 ```{r}
 pi0 = .8
 a = .25
+```
+The true value for $\pi_0$ is `r pi0`, and the true value for $a$ is `r a`.
 
+```{r}
 res_list_point_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, bench_name = "Default Start", pi0 = pi0, a = a), 
                 benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = a), bench_name = "(pi0, a) Start", pi0 = pi0, a = a),
                 benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 1, a = a), bench_name = "(1, a) Start", pi0 = pi0, a = a), 
