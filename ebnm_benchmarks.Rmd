@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T, error = F, warning = F, message = F, results = 'asis', fig.align = 'center')
+knitr::opts_chunk$set(echo = T, error = T, warning = T, message = F, results = 'asis', fig.align = 'center')
 ```
 
 # Introduction
@@ -23,17 +23,7 @@ library(RColorBrewer)
 devtools::load_all("../ebnm")
 ```
 
-# `ebnm_normal` Testing
-In this section, we test the `ebnm_normal` function. This function assumes that data are generated from the following model:
-$$
-\begin{aligned}
-\theta_j \stackrel{iid}{\sim} \mathcal{N}\Big(\mu, \frac1a\Big) \\
-x_j \stackrel{\perp}{\sim} \mathcal{N}\Big(\theta_j, s_j^2\Big)
-\end{aligned}
-$$
-The $x_j$ and $s_j$ are supplied to the `enbm_normal` function, which then finds the MLE estimates $\hat{\mu}$ and $\hat{a}$ and provides posterior estimates for the first and second moments of $\theta_j$.
-
-
+Note that, in the implementation for comparing different settings/functions, if the estimated value for $\hat{a}$ is extreme, it is not included in some plots, but a warning message will warn the user about their existence.
 ```{r}
 # This function simulates data from the ebnm (point) normal problem. It generates 1/s_j^2 randomly from a Gamma(s_alpha, s_beta) distribution
 sim_ebnm_normal_data = function(n, mu, a, pi0, s_alpha, s_beta) {
@@ -96,17 +86,28 @@ compare_res = function(res_list, true_par1, true_par2) {
   res_df = bind_rows(res_list)
   par_names = colnames(res_df)[2:3]
   
+  # make sure boxplots are in correct order
+  lvl = levels(as.factor(res_df$name))
+  names(lvl) = lvl
+  res_df$name_factor = factor(res_df$name, levels = lvl[unique(res_df$name)])
+  
   # Avg Time
-  boxplot(avg_time ~ name, data = res_df, ylab = "Average Runtime (milliseconds)", main = "Comparison of Average Runtimes")
-  points(jitter(as.numeric(as.factor(res_df$name))), res_df$avg_time, col = rep(cols, times = sapply(res_list, nrow)))
+  boxplot(avg_time ~ name_factor, data = res_df, ylab = "Average Runtime (milliseconds)", main = "Comparison of Average Runtimes", xaxt = "n", xlab = "")
+  points(jitter(as.numeric(res_df$name_factor)), res_df$avg_time, col = rep(cols, times = sapply(res_list, nrow)))
+  axis(1, labels = F, tick = F)
+  text(x =  seq_along(unique(res_df$name)), y = par("usr")[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
   
   # MSE
-  boxplot(MSE ~ name, data = res_df, ylab = "MSE", main = "Comparison of MSEs")
-  points(jitter(as.numeric(as.factor(res_df$name))), res_df$MSE, col = rep(cols, times = sapply(res_list, nrow)))
+  boxplot(MSE ~ name_factor, data = res_df, ylab = "MSE", main = "Comparison of MSEs", xaxt = "n", xlab = "")
+  points(jitter(as.numeric(res_df$name_factor)), res_df$MSE, col = rep(cols, times = sapply(res_list, nrow)))
+  axis(1, labels = F, tick = F)
+  text(x =  seq_along(unique(res_df$name)), y = par("usr")[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
   
   # log-lik
-  boxplot(ll ~ name, data = res_df, ylab = "Log-Likelihood", main = "Comparison of Log-Likelihoods")
-  points(jitter(as.numeric(as.factor(res_df$name))), res_df$ll, col = rep(cols, times = sapply(res_list, nrow)))
+  boxplot(ll ~ name_factor, data = res_df, ylab = "Log-Likelihood", main = "Comparison of Log-Likelihoods", xaxt = "n", xlab = "")
+  points(jitter(as.numeric(res_df$name_factor)), res_df$ll, col = rep(cols, times = sapply(res_list, nrow)))
+  axis(1, labels = F, tick = F)
+  text(x =  seq_along(unique(res_df$name)), y = par("usr")[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
   
   # par1 (pi0 or mu)
   d = res_list[[1]][, par_names[1]]
@@ -141,6 +142,17 @@ compare_res = function(res_list, true_par1, true_par2) {
 ```
 
 
+# `ebnm_normal` Testing
+In this section, we test the `ebnm_normal` function. This function assumes that data are generated from the following model:
+$$
+\begin{aligned}
+\theta_j \stackrel{iid}{\sim} \mathcal{N}\Big(\mu, \frac1a\Big) \\
+x_j \stackrel{\perp}{\sim} \mathcal{N}\Big(\theta_j, s_j^2\Big)
+\end{aligned}
+$$
+The $x_j$ and $s_j$ are supplied to the `enbm_normal` function, which then finds the MLE estimates $\hat{\mu}$ and $\hat{a}$ and provides posterior estimates for the first and second moments of $\theta_j$.
+
+Here, I simulate data from the above distribution and test the speed and accuracy at different starting points for the optimization problem. 
 ```{r}
 mu = 0
 a = .25
