@@ -344,7 +344,8 @@ div.section {
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
-<p><details> <summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </details>
 </li>
 <li>
@@ -363,18 +364,16 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> 46f68a0 </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/4d985f1416454385644da1619b61a38b1e22c72c" target="_blank">4d985f1</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
     Ignored:    analysis/.Rhistory
 
 Untracked files:
-    Untracked:  analysis/ebnm_benchmarks.Rmd
-    Untracked:  code/functions.R
-    Untracked:  figure/
-    Untracked:  temp_debug.RDS
+    Untracked:  docs/figure/
 
 Unstaged changes:
     Deleted:    ebnm_benchmarks.Rmd
@@ -383,16 +382,243 @@ Unstaged changes:
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
 </li>
 </ul>
+<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+<ul>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+File
+</th>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/4d985f1416454385644da1619b61a38b1e22c72c/analysis/ebnm_benchmarks.Rmd" target="_blank">4d985f1</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+<td style="text-align:left;">
+Fixing xlim and ylim
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/edd890188ed23eacdbb9624a0bec1b1916b7d234/analysis/ebnm_benchmarks.Rmd" target="_blank">edd8901</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+<td style="text-align:left;">
+Fixing x-axis limits on combined density plots
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2a0ec139bc662b7775d32aecae7b4e9dabc39773/analysis/ebnm_benchmarks.Rmd" target="_blank">2a0ec13</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+<td style="text-align:left;">
+Changing folder structure
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/andrewg3311/ebnm_benchmarks/2a0ec139bc662b7775d32aecae7b4e9dabc39773/docs/ebnm_benchmarks.html" target="_blank">2a0ec13</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-17
+</td>
+<td style="text-align:left;">
+Changing folder structure
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+<p></details></p>
 <hr />
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>This code executes the functions in the <code>ebnm</code> package on simulated data. We simulate data according to different generating processes, and test the speed and accuracy of <code>ebnm_normal</code>, <code>ebnm_point_normal</code>, and <code>ebnm_point_laplace</code> functions.</p>
 <pre class="r"><code># Load required packages
-source(&quot;../code/functions.R&quot;)</code></pre>
-<pre><code>Warning in file(filename, &quot;r&quot;, encoding = encoding): cannot open file &#39;../
-code/functions.R&#39;: No such file or directory</code></pre>
-<pre><code>Error in file(filename, &quot;r&quot;, encoding = encoding): cannot open the connection</code></pre>
+library(workflowr)
+library(microbenchmark)
+library(dplyr)
+library(RColorBrewer)
+devtools::load_all(&quot;../ebnm&quot;)</code></pre>
 <p>Note that, in the implementation for comparing different settings/functions, if the estimated value for <span class="math inline">\(\hat{a}\)</span> is extreme, it is not included in some plots, but a warning message will warn the user about their existence.</p>
+<pre class="r"><code># This function simulates data from the ebnm (point) normal problem. It generates 1/s_j^2 randomly from a Gamma(s_alpha, s_beta) distribution
+sim_ebnm_normal_data = function(n, mu, a, pi0, s_alpha, s_beta) {
+  if ((mu != 0) &amp; (pi0 &gt; 0)) { # if trying to simulate from point-normal w/ mu != 0
+    stop(&quot;If using point-normal prior, mu must be set to 0&quot;)
+  }
+  
+  theta = rnorm(n, mean = mu, sd = sqrt(1/a))
+  nonnulls = rbinom(n, size = 1, prob = 1 - pi0)
+  theta = theta * nonnulls # change to 0 if null
+  t = rgamma(n, shape = s_alpha, rate = s_beta) # 1/s_j^2
+  s = sqrt(1 / t)
+  x = rnorm(n, mean = theta, sd = s)
+  return(list(x = x, s = s, theta = theta))
+}
+
+# Function to calculate results
+calc_res = function(ebnm_fn, x, s, theta, g_start = NULL) {
+  ebnm_res = ebnm_fn(x, s, g = g_start)
+  par1 = ebnm_res$fitted_g[[1]] # mu for normal, pi0 for point-normal
+  par2 = ebnm_res$fitted_g[[2]] # a for normal, a for point-normal
+  MSE = mean((ebnm_res$result$PosteriorMean - theta)^2)
+  ll = ebnm_res$loglik
+  return(c(par1, par2, MSE, ll))
+}
+
+
+
+# This function simulates data B times, each time calculating the total computation time, the estimated values for mu and a, the MSE of the posterior mean in trying to recover theta, and the loglikelihood. Different starting values can be manually specified
+# benchmark_name should be used when comparing different benchmark results
+benchmark_ebnm_normal = function(ebnm_fn, B = 1000, n = 1000, mu = 0, a = .25, pi0 = 0, s_alpha = 2, s_beta = 20, g_start = NULL, bench_times = 5, bench_name = &quot;&quot;, seed = 1138) {
+  set.seed(seed)
+  
+  par_names = names(ebnm_fn(c(1,1), c(1, 1))$fitted_g) # c(&quot;mu&quot;, &quot;a&quot;) or c(&quot;pi0&quot;, &quot;a&quot;)
+  
+  res = data.frame(avg_time = numeric(B), par1 = numeric(B), par2 = numeric(B), MSE = numeric(B), ll = numeric(B))
+  colnames(res)[grepl(&quot;^par[0-9]$&quot;, colnames(res))] = par_names
+  
+  for (i in 1:B) {
+    xst = sim_ebnm_normal_data(n, mu, a, pi0, s_alpha, s_beta) # simulate data
+    x = xst$x
+    s = xst$s
+    theta = xst$theta
+    
+    m = microbenchmark(ebnm_fn(x, s), times = bench_times)
+    res[i, 1] = mean(m$time / 1e6) # milliseconds
+    res[i, 2:5] = calc_res(ebnm_fn, x, s, theta, g_start)
+  }
+  
+  res$name = bench_name
+  return(res)
+}
+
+
+# This function takes a list of result dataframes, true parameter values. It plots comparisons of the different runs
+# These should all have been run with the same parameter values, same seed, etc for consistency
+compare_res = function(res_list, true_par1, true_par2) {
+  n = length(res_list)
+  cols = brewer.pal(n, &quot;Dark2&quot;)[1:n]
+  res_df = bind_rows(res_list)
+  par_names = colnames(res_df)[2:3]
+  
+  # make sure boxplots are in correct order
+  lvl = levels(as.factor(res_df$name))
+  names(lvl) = lvl
+  res_df$name_factor = factor(res_df$name, levels = lvl[unique(res_df$name)])
+  
+  # Avg Time
+  boxplot(avg_time ~ name_factor, data = res_df, ylab = &quot;Average Runtime (milliseconds)&quot;, main = &quot;Comparison of Average Runtimes&quot;, xaxt = &quot;n&quot;, xlab = &quot;&quot;, outlne = F)
+  points(jitter(as.numeric(res_df$name_factor)), res_df$avg_time, col = rep(cols, times = sapply(res_list, nrow)))
+  axis(1, labels = F, tick = F)
+  text(x =  seq_along(unique(res_df$name)), y = par(&quot;usr&quot;)[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
+  
+  # MSE
+  boxplot(MSE ~ name_factor, data = res_df, ylab = &quot;MSE&quot;, main = &quot;Comparison of MSEs&quot;, xaxt = &quot;n&quot;, xlab = &quot;&quot;, outlne = F)
+  points(jitter(as.numeric(res_df$name_factor)), res_df$MSE, col = rep(cols, times = sapply(res_list, nrow)))
+  axis(1, labels = F, tick = F)
+  text(x =  seq_along(unique(res_df$name)), y = par(&quot;usr&quot;)[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
+  
+  # log-lik
+  boxplot(ll ~ name_factor, data = res_df, ylab = &quot;Log-Likelihood&quot;, main = &quot;Comparison of Log-Likelihoods&quot;, xaxt = &quot;n&quot;, xlab = &quot;&quot;, outlne = F)
+  points(jitter(as.numeric(res_df$name_factor)), res_df$ll, col = rep(cols, times = sapply(res_list, nrow)))
+  axis(1, labels = F, tick = F)
+  text(x =  seq_along(unique(res_df$name)), y = par(&quot;usr&quot;)[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
+  
+  # par1 (pi0 or mu)
+  ## all on one plot
+  d = res_list[[1]][, par_names[1]]
+  plot(density(d), xlab = paste(&quot;MLE Estimate for &quot;, par_names[1], sep = &quot;&quot;), main = paste(&quot;Density of Estimates for &quot;, par_names[1], sep = &quot;&quot;), col = cols[1], xlim = range(res_df[, par_names[1]], finite = T) , ylim = c(0, min(10, 1.1 * max(density(d)$y))), lwd = 2)
+  for (i in 2:n) {
+    d = res_list[[i]][, par_names[1]]
+    lines(density(d), col = cols[i], lwd = 2)
+  }
+  abline(v = true_par1, col = &quot;red&quot;)
+  legend(&quot;topright&quot;, legend = c(unique(res_df$name), &quot;Truth&quot;), fill = c(cols, &quot;red&quot;), bty = &quot;n&quot;)
+  
+  ## all on different plots
+  for (i in 1:n) {
+    d = res_list[[i]][, par_names[1]]
+    hist(d, xlab = paste(&quot;MLE Estimate for &quot;, par_names[1], sep = &quot;&quot;), main = paste(&quot;Estimates for &quot;, par_names[1], &quot;: run &quot;, unique(res_list[[i]]$name), sep = &quot;&quot;))
+    abline(v = true_par1, col = &quot;red&quot;)
+  }
+  
+  # par2 (a)
+  ## all on one plot
+  d = res_list[[1]][, par_names[2]]
+  plot_ind = (abs(d - true_par2) / true_par2 &lt;= 2)
+  
+  plot(density(d[plot_ind]), xlab = paste(&quot;MLE Estimate for &quot;, par_names[2], sep = &quot;&quot;), main = paste(&quot;Density of Estimates for &quot;, par_names[2], sep = &quot;&quot;), col = cols[1], xlim = range(res_df[, par_names[2]], finite = T), ylim = c(0, min(10, 1.1 * max(density(d[plot_ind])$y))), lwd = 2)
+  if (sum(!plot_ind) &gt; 1) { # if relative error &gt; 200%
+    warning(paste(&quot;Some fitted values for &quot;, par_names[2], &quot; in run &quot;, unique(res_list[[1]]$name), &quot; were very far from the true value. These should be inspected more closely&quot;, sep = &quot;&quot;))
+  }
+  for (i in 2:n) {
+    d = res_list[[i]][, par_names[2]]
+    plot_ind = (abs(d - true_par2) / true_par2 &lt;= 2)
+    
+    lines(density(d[plot_ind]), col = cols[i], lwd = 2)
+    if (sum(!plot_ind) &gt; 1) { # if relative error &gt; 200%
+      warning(paste(&quot;Some fitted values for &quot;, par_names[2], &quot; in run &quot;, unique(res_list[[i]]$name), &quot; were very far from the true value. These should be inspected more closely&quot;, sep = &quot;&quot;))
+    }
+    #if (sum(plot_ind)) ADD CONDITION THAT IF TOO MANY ARE BAD, SKIP AND GIVE WARNING
+  }
+  abline(v = true_par2, col = &quot;red&quot;)
+  legend(&quot;topright&quot;, legend = c(unique(res_df$name), &quot;Truth&quot;), fill = c(cols, &quot;red&quot;), bty = &quot;n&quot;)
+  
+    ## all on different plots
+  for (i in 1:n) {
+    d = res_list[[i]][, par_names[2]]
+    hist(d, xlab = paste(&quot;MLE Estimate for &quot;, par_names[2], sep = &quot;&quot;), main = paste(&quot;Estimates for &quot;, par_names[2], &quot;: run &quot;, unique(res_list[[i]]$name), sep = &quot;&quot;))
+    abline(v = true_par2, col = &quot;red&quot;)
+  }
+}</code></pre>
 </div>
 <div id="ebnm_normal-testing" class="section level1">
 <h1><code>ebnm_normal</code> Testing</h1>
@@ -411,10 +637,17 @@ a = .25</code></pre>
                 benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 1, a = 1), bench_name = &quot;(1, 1) Start&quot;, mu = mu, a = a), 
                 benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = -1, a = 1), bench_name = &quot;(-1, 1) Start&quot;, mu = mu, a = a), 
                 benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 100, a = a), bench_name = &quot;(100, a) Start&quot;, mu = mu, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 0, a = 100), bench_name = &quot;(mu, 100) Start&quot;, mu = mu, a = a))</code></pre>
-<pre><code>Error in benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B = 100, bench_name = &quot;Default Start&quot;, : could not find function &quot;benchmark_ebnm_normal&quot;</code></pre>
-<pre class="r"><code>compare_res(res_list_normal, mu, a)</code></pre>
-<pre><code>Error in compare_res(res_list_normal, mu, a): could not find function &quot;compare_res&quot;</code></pre>
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 0, a = 100), bench_name = &quot;(mu, 100) Start&quot;, mu = mu, a = a))
+
+compare_res(res_list_normal, mu, a)</code></pre>
+<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-10.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>Warning in compare_res(res_list_normal, mu, a): Some fitted values for a
+in run Default Start were very far from the true value. These should be
+inspected more closely</code></pre>
+<pre><code>Warning in compare_res(res_list_normal, mu, a): Some fitted values for a
+in run (100, a) Start were very far from the true value. These should be
+inspected more closely</code></pre>
+<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-16.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-17.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ebnm_point_normal-testing" class="section level1">
 <h1><code>ebnm_point_normal</code> Testing</h1>
@@ -433,10 +666,12 @@ a = .25</code></pre>
                 benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 1, a = a), bench_name = &quot;(1, a) Start&quot;, pi0 = pi0, a = a), 
                 benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 0, a = a), bench_name = &quot;(0, a) Start&quot;, pi0 = pi0, a = a), 
                 benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 1e-5), bench_name = &quot;(pi0, 1e-5) Start&quot;, pi0 = pi0, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 50), bench_name = &quot;(pi0, 50) Start&quot;, pi0 = pi0, a = a))</code></pre>
-<pre><code>Error in benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B = 100, bench_name = &quot;Default Start&quot;, : could not find function &quot;benchmark_ebnm_normal&quot;</code></pre>
-<pre class="r"><code>compare_res(res_list_point_normal, pi0, a)</code></pre>
-<pre><code>Error in compare_res(res_list_point_normal, pi0, a): could not find function &quot;compare_res&quot;</code></pre>
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 50), bench_name = &quot;(pi0, 50) Start&quot;, pi0 = pi0, a = a))
+
+compare_res(res_list_point_normal, pi0, a)</code></pre>
+<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-9.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>Error in density.default(d[plot_ind]): need at least 2 points to select a bandwidth automatically</code></pre>
+<p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-10.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
@@ -446,13 +681,24 @@ a = .25</code></pre>
 [3] LC_MONETARY=English_United States.1252 [4] LC_NUMERIC=C<br />
 [5] LC_TIME=English_United States.1252</p>
 <p>attached base packages: [1] stats graphics grDevices utils datasets methods base</p>
-<p>loaded via a namespace (and not attached): [1] workflowr_1.1.1 Rcpp_0.12.19 digest_0.6.17<br />
-[4] rprojroot_1.3-2 R.methodsS3_1.7.1 backports_1.1.2<br />
-[7] git2r_0.23.0 magrittr_1.5 evaluate_0.11<br />
-[10] stringi_1.2.4 whisker_0.3-2 R.oo_1.22.0<br />
-[13] R.utils_2.7.0 rmarkdown_1.10 tools_3.5.1<br />
-[16] stringr_1.3.1 yaml_2.2.0 compiler_3.5.1<br />
-[19] htmltools_0.3.6 knitr_1.20</p>
+<p>other attached packages: [1] ebnm_0.1-16 RColorBrewer_1.1-2 dplyr_0.7.6<br />
+[4] microbenchmark_1.4-5 workflowr_1.1.1</p>
+<p>loaded via a namespace (and not attached): [1] Rcpp_0.12.19 compiler_3.5.1 pillar_1.3.0<br />
+[4] git2r_0.23.0 bindr_0.1.1 iterators_1.0.10 [7] R.methodsS3_1.7.1 R.utils_2.7.0 tools_3.5.1<br />
+[10] testthat_2.0.1 digest_0.6.17 lattice_0.20-35<br />
+[13] evaluate_0.11 memoise_1.1.0 tibble_1.4.2<br />
+[16] pkgconfig_2.0.2 rlang_0.2.2 foreach_1.4.4<br />
+[19] Matrix_1.2-14 commonmark_1.6 parallel_3.5.1<br />
+[22] yaml_2.2.0 bindrcpp_0.2.2 withr_2.1.2<br />
+[25] stringr_1.3.1 knitr_1.20 roxygen2_6.1.0<br />
+[28] xml2_1.2.0 devtools_1.13.6 grid_3.5.1<br />
+[31] rprojroot_1.3-2 tidyselect_0.2.4 glue_1.3.0<br />
+[34] R6_2.3.0 rmarkdown_1.10 purrr_0.2.5<br />
+[37] ashr_2.2-7 magrittr_1.5 whisker_0.3-2<br />
+[40] MASS_7.3-50 codetools_0.2-15 backports_1.1.2<br />
+[43] htmltools_0.3.6 assertthat_0.2.0 stringi_1.2.4<br />
+[46] pscl_1.5.2 doParallel_1.0.14 truncnorm_1.0-8<br />
+[49] SQUAREM_2017.10-1 crayon_1.3.4 R.oo_1.22.0</p>
 </div>
 </div>
 
