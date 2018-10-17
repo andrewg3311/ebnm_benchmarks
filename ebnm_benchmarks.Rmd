@@ -19,6 +19,8 @@ This code executes the functions in the `ebnm` package on simulated data. We sim
 library(workflowr)
 library(microbenchmark)
 devtools::load_all("../ebnm")
+
+set.seed(1138)
 ```
 
 # `ebnm_normal` Testing
@@ -29,4 +31,63 @@ $$
 x_j \stackrel{\perp}{\sim} \mathcal{N}\Big(\theta_j, s_j^2\Big)
 \end{aligned}
 $$
-The $x_j$ and $s_j$ are supplied to the `enbm_normal` function, which then finds the MLE estimates $\hat{\mu}$ and $\hat{a}$ and provides posterior estimates for first and second moments of $\theta_j$.
+The $x_j$ and $s_j$ are supplied to the `enbm_normal` function, which then finds the MLE estimates $\hat{\mu}$ and $\hat{a}$ and provides posterior estimates for the first and second moments of $\theta_j$.
+
+
+```{r}
+# This function simulates data from the ebnm normal problem. It generates 1/s_j^2 randomly from a Gamma(s_alpha, s_beta) distribution
+sim_ebnm_normal_data = function(n, mu, a, s_alpha, s_beta) {
+  theta = rnorm(n, mean = mu, sd = sqrt(1/a))
+  t = rgamma(n, shape = s_alpha, rate = s_beta) # 1/s_j^2
+  s = sqrt(1 / t)
+  x = rnorm(n, mean = theta, sd = s)
+  return(list(x = x, s = s, theta = theta))
+}
+
+# Function to calculate results
+calc_res = function(x, s, theta, g_start = NULL) {
+  ebnm_res = ebnm_normal(x, s, g = g_start)
+  mu = ebnm_res$fitted_g$mu
+  a = ebnm_res$fitted_g$a
+  MSE = mean((ebnm_res$result$PosteriorMean - theta)^2)
+  ll = ebnm_res$loglik
+  return(c(mu, a, MSE, ll))
+}
+
+
+
+# This function simulates data B times, each time calculating the total computation time, the estimated values for mu and a, the MSE of the posterior mean in trying to recover theta, and the loglikelihood. Different starting values can be manually specified
+# NOTE: microbenchmark not used here, since I also want to store the results
+benchmark_ebnm_normal = function(B = 1000, n = 1000, mu = 0, a = .25, s_alpha = 2, s_beta = 20, g_start = list(mu = 0, a = 1), bench_times = 5) {
+  res = data.frame(avg_time_default = numeric(B), mu_default = numeric(B), a_default = numeric(B), MSE_default = numeric(B), ll_default = numeric(B), 
+                   avg_time_manual = numeric(B), mu_manual = numeric(B), a_manual = numeric(B), MSE_manual = numeric(B), ll_manual = numeric(B))
+  
+  for (i in 1:B) {
+    xst = sim_ebnm_normal_data(n, mu, a, s_alpha, s_beta) # simulate data
+    x = xst$x
+    s = xst$s
+    theta = xst$theta
+    
+    if (i %% 2) { # on odd iterations, do default start val first
+      m_default = microbenchmark(ebnm_normal(x, s), times = bench_times)
+      m_manual = microbenchmark(ebnm_normal(x, s, g = g_start), times = bench_times)
+      
+      res[i, 1] = mean(m_default$time / 1e6) # milliseconds
+      res[i, 6] = mean(m_manual$time / 1e6) # milliseconds
+      res[i, 2:5] = calc_res(x, s, theta)
+      res[i, 7:10] = calc_res(x, s, theta, g_start)
+    } else { # on evens, do manual first (to counteract caching effects)
+      m_manual = microbenchmark(ebnm_normal(x, s, g = g_start), times = bench_times)
+      m_default = microbenchmark(ebnm_normal(x, s), times = bench_times)
+      
+      res[i, 1] = mean(m_default$time / 1e6) # milliseconds
+      res[i, 6] = mean(m_manual$time / 1e6) # milliseconds
+      res[i, 2:5] = calc_res(x, s, theta)
+      res[i, 7:10] = calc_res(x, s, theta, g_start)
+    }
+    
+  }
+  
+  return(res)
+}
+```
