@@ -110,6 +110,7 @@ compare_res = function(res_list, true_par1, true_par2) {
   text(x =  seq_along(unique(res_df$name)), y = par("usr")[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
   
   # par1 (pi0 or mu)
+  ## all on one plot
   d = res_list[[1]][, par_names[1]]
   plot(density(d), xlab = paste("MLE Estimate for ", par_names[1], sep = ""), main = paste("Density of Estimates for ", par_names[1], sep = ""), col = cols[1], ylim = c(0, 1.1 * max(density(d)$y)), lwd = 2)
   for (i in 2:n) {
@@ -119,7 +120,14 @@ compare_res = function(res_list, true_par1, true_par2) {
   abline(v = true_par1, col = "red")
   legend("topright", legend = c(unique(res_df$name), "Truth"), fill = c(cols, "red"), bty = "n")
   
+  ## all on different plots
+  for (i in 1:n) {
+    d = res_list[[1]][, par_names[1]]
+    hist(d, xlab = paste("MLE Estimate for ", par_names[1], sep = ""), main = paste("Estimates for ", par_names[1], ": run ", unique(res_list[[1]]$name), sep = ""))
+  }
+  
   # par2 (a)
+  ## all on one plot
   d = res_list[[1]][, par_names[2]]
   plot_ind = (abs(d - true_par2) / true_par2 <= 2)
   
@@ -135,9 +143,16 @@ compare_res = function(res_list, true_par1, true_par2) {
     if (sum(!plot_ind) > 1) { # if relative error > 200%
       warning(paste("Some fitted values for ", par_names[2], " in run ", unique(res_list[[i]]$name), " were very far from the true value. These should be inspected more closely", sep = ""))
     }
+    #if (sum(plot_ind)) ADD CONDITION THAT IF TOO MANY ARE BAD, SKIP AND GIVE WARNING
   }
   abline(v = true_par2, col = "red")
   legend("topright", legend = c(unique(res_df$name), "Truth"), fill = c(cols, "red"), bty = "n")
+  
+    ## all on different plots
+  for (i in 1:n) {
+    d = res_list[[1]][, par_names[2]]
+    hist(d, xlab = paste("MLE Estimate for ", par_names[2], sep = ""), main = paste("Estimates for ", par_names[1], ": run ", unique(res_list[[1]]$name), sep = ""))
+  }
 }
 ```
 
