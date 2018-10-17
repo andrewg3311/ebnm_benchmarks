@@ -92,19 +92,19 @@ compare_res = function(res_list, true_par1, true_par2) {
   res_df$name_factor = factor(res_df$name, levels = lvl[unique(res_df$name)])
   
   # Avg Time
-  boxplot(avg_time ~ name_factor, data = res_df, ylab = "Average Runtime (milliseconds)", main = "Comparison of Average Runtimes", xaxt = "n", xlab = "")
+  boxplot(avg_time ~ name_factor, data = res_df, ylab = "Average Runtime (milliseconds)", main = "Comparison of Average Runtimes", xaxt = "n", xlab = "", outlne = F)
   points(jitter(as.numeric(res_df$name_factor)), res_df$avg_time, col = rep(cols, times = sapply(res_list, nrow)))
   axis(1, labels = F, tick = F)
   text(x =  seq_along(unique(res_df$name)), y = par("usr")[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
   
   # MSE
-  boxplot(MSE ~ name_factor, data = res_df, ylab = "MSE", main = "Comparison of MSEs", xaxt = "n", xlab = "")
+  boxplot(MSE ~ name_factor, data = res_df, ylab = "MSE", main = "Comparison of MSEs", xaxt = "n", xlab = "", outlne = F)
   points(jitter(as.numeric(res_df$name_factor)), res_df$MSE, col = rep(cols, times = sapply(res_list, nrow)))
   axis(1, labels = F, tick = F)
   text(x =  seq_along(unique(res_df$name)), y = par("usr")[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
   
   # log-lik
-  boxplot(ll ~ name_factor, data = res_df, ylab = "Log-Likelihood", main = "Comparison of Log-Likelihoods", xaxt = "n", xlab = "")
+  boxplot(ll ~ name_factor, data = res_df, ylab = "Log-Likelihood", main = "Comparison of Log-Likelihoods", xaxt = "n", xlab = "", outlne = F)
   points(jitter(as.numeric(res_df$name_factor)), res_df$ll, col = rep(cols, times = sapply(res_list, nrow)))
   axis(1, labels = F, tick = F)
   text(x =  seq_along(unique(res_df$name)), y = par("usr")[3], srt = 45, adj = 1, labels = unique(res_df$name), xpd = T)
@@ -121,18 +121,18 @@ compare_res = function(res_list, true_par1, true_par2) {
   
   # par2 (a)
   d = res_list[[1]][, par_names[2]]
-  plot_ind = (abs(d - true_par2) / true_par2 <= 1)
+  plot_ind = (abs(d - true_par2) / true_par2 <= 2)
   
   plot(density(d[plot_ind]), xlab = paste("MLE Estimate for ", par_names[2], sep = ""), main = paste("Density of Estimates for ", par_names[2], sep = ""), col = cols[1], ylim = c(0, 1.1 * max(density(d[plot_ind])$y)), lwd = 2)
-  if (sum(!plot_ind) > 1) { # if relative error > 100%
+  if (sum(!plot_ind) > 1) { # if relative error > 200%
     warning(paste("Some fitted values for ", par_names[2], " in run ", unique(res_list[[1]]$name), " were very far from the true value. These should be inspected more closely", sep = ""))
   }
   for (i in 2:n) {
     d = res_list[[i]][, par_names[2]]
-    plot_ind = (abs(d - true_par2) / true_par2 <= 1)
+    plot_ind = (abs(d - true_par2) / true_par2 <= 2)
     
     lines(density(d[plot_ind]), col = cols[i], lwd = 2)
-    if (sum(!plot_ind) > 1) { # if relative error > 100%
+    if (sum(!plot_ind) > 1) { # if relative error > 200%
       warning(paste("Some fitted values for ", par_names[2], " in run ", unique(res_list[[i]]$name), " were very far from the true value. These should be inspected more closely", sep = ""))
     }
   }
