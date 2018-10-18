@@ -54,7 +54,7 @@ calc_res = function(ebnm_fn, x, s, theta, g_start = NULL) {
 
 # This function simulates data B times, each time calculating the total computation time, the estimated values for mu and a, the MSE of the posterior mean in trying to recover theta, and the loglikelihood. Different starting values can be manually specified
 # benchmark_name should be used when comparing different benchmark results
-benchmark_ebnm_normal = function(ebnm_fn, B = 1000, n = 1000, mu = 0, a = .25, pi0 = 0, s_alpha = 2, s_beta = 20, g_start = NULL, bench_times = 5, bench_name = "", seed = 1138) {
+benchmark_ebnm_normal = function(ebnm_fn, B = 1000, n = 1000, mu = 0, a = 1/16, pi0 = 0, s_alpha = 2, s_beta = 10, g_start = NULL, bench_times = 5, bench_name = "", seed = 1138) {
   set.seed(seed)
   
   par_names = names(ebnm_fn(c(1,1), c(1, 1))$fitted_g) # c("mu", "a") or c("pi0", "a")
@@ -188,7 +188,7 @@ The $x_j$ and $s_j$ are supplied to the `enbm_normal` function, which then finds
 Here, I simulate data from the above distribution and test the speed and accuracy at different starting points for the optimization problem.
 ```{r}
 mu = 0
-a = .25
+a = 1/16
 ```
 The true value for $\mu$ is `r mu`, and the true value for $a$ is `r a`.
 
@@ -217,7 +217,7 @@ The $x_j$ and $s_j$ are supplied to the `enbm_point_normal` function, which then
 Here, I simulate data from the above distribution and test the speed and accuracy at different starting points for the optimization problem. 
 ```{r}
 pi0 = .8
-a = .25
+a = 1/16
 ```
 The true value for $\pi_0$ is `r pi0`, and the true value for $a$ is `r a`.
 
