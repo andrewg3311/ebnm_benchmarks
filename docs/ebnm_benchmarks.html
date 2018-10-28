@@ -340,7 +340,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2018-10-27</p>
+<p><strong>Last updated:</strong> 2018-10-28</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -364,7 +364,7 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/10859325930cd146ab8a5858148f1d55bde47d42" target="_blank">1085932</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/1924449765c5b615007e2a8c2d9723b3ef15ae28" target="_blank">1924449</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -399,6 +399,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/1924449765c5b615007e2a8c2d9723b3ef15ae28/analysis/ebnm_benchmarks.Rmd" target="_blank">1924449</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-28
+</td>
+<td style="text-align:left;">
+Specifying how s_j were simulated
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/andrewg3311/ebnm_benchmarks/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/ebnm_benchmarks.html" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -725,17 +759,19 @@ x_j \stackrel{\perp}{\sim} \mathcal{N}\Big(\theta_j, s_j^2\Big)
 \]</span> The <span class="math inline">\(x_j\)</span> and <span class="math inline">\(s_j\)</span> are supplied to the <code>enbm_normal</code> function, which then finds the MLE estimates <span class="math inline">\(\hat{\mu}\)</span> and <span class="math inline">\(\hat{a}\)</span> and provides posterior estimates for the first and second moments of <span class="math inline">\(\theta_j\)</span>.</p>
 <p>Here, I simulate data from the above distribution and test the speed and accuracy at different starting points for the optimization problem.</p>
 <pre class="r"><code>mu = 0
-a = 1/16</code></pre>
+a = 1/16
+s_alpha = 2
+s_beta = 10</code></pre>
 <p>The true value for <span class="math inline">\(\mu\)</span> is 0, and the true value for <span class="math inline">\(a\)</span> is 0.0625.</p>
 <div id="simulation-study-results" class="section level2">
 <h2>Simulation Study Results</h2>
-<p>The plots below detail the results of the simulation study. For each of <span class="math inline">\(B = 100\)</span> simulation repetitions, I simulate <span class="math inline">\(n = 1000\)</span> observations <span class="math inline">\(x_j\)</span> and standard errors <span class="math inline">\(s_j\)</span> from the normal means model.</p>
-<pre class="r"><code>res_list_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, bench_name = &quot;Default Start&quot;, mu = mu, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = mu, a = a), bench_name = &quot;(mu, a) Start&quot;, mu = mu, a = a),
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 1, a = 1), bench_name = &quot;(1, 1) Start&quot;, mu = mu, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = -1, a = 1), bench_name = &quot;(-1, 1) Start&quot;, mu = mu, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 100, a = a), bench_name = &quot;(100, a) Start&quot;, mu = mu, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 0, a = 100), bench_name = &quot;(mu, 100) Start&quot;, mu = mu, a = a))
+<p>The plots below detail the results of the simulation study. For each of <span class="math inline">\(B = 100\)</span> simulation repetitions, I simulate <span class="math inline">\(n = 1000\)</span> observations <span class="math inline">\(x_j\)</span> from the normal means model, where <span class="math inline">\(1 / s_j^2\)</span> are simulated randomly from a Gamma(2, 10) distribution.</p>
+<pre class="r"><code>res_list_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, bench_name = &quot;Default Start&quot;, mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = mu, a = a), bench_name = &quot;(mu, a) Start&quot;, mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta),
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 1, a = 1), bench_name = &quot;(1, 1) Start&quot;, mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = -1, a = 1), bench_name = &quot;(-1, 1) Start&quot;, mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 100, a = a), bench_name = &quot;(100, a) Start&quot;, mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 0, a = 100), bench_name = &quot;(mu, 100) Start&quot;, mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta))
 
 compare_res(res_list_normal, mu, a)</code></pre>
 <p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -755,6 +791,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-1.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8cd2cff323c9d3e33224f76e1d0c9a4094ab1eaa/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-1.png" target="_blank">8cd2cff</a>
@@ -798,6 +845,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-2.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-2.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -826,6 +884,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-3.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-3.png" target="_blank">2fbe0ac</a>
@@ -858,6 +927,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-4.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-4.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -886,6 +966,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-5.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-5.png" target="_blank">2fbe0ac</a>
@@ -918,6 +1009,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-6.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-6.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -946,6 +1048,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-7.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-7.png" target="_blank">2fbe0ac</a>
@@ -978,6 +1091,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-8.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-8.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1008,6 +1132,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-9.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-9.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1036,6 +1171,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-10.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-10.png" target="_blank">2fbe0ac</a>
@@ -1072,6 +1218,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-11.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-11.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1100,6 +1257,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-12.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-12.png" target="_blank">2fbe0ac</a>
@@ -1132,6 +1300,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-13.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-13.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1160,6 +1339,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-14.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-14.png" target="_blank">2fbe0ac</a>
@@ -1192,6 +1382,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-15.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-15.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1222,6 +1423,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-16.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-16.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1250,6 +1462,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-17.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-4-17.png" target="_blank">2fbe0ac</a>
@@ -1293,17 +1516,19 @@ x_j \stackrel{\perp}{\sim} \mathcal{N}\Big(\theta_j, s_j^2\Big)
 \]</span> The <span class="math inline">\(x_j\)</span> and <span class="math inline">\(s_j\)</span> are supplied to the <code>enbm_point_normal</code> function, which then finds the MLE estimates <span class="math inline">\(\hat{\pi_0}\)</span> and <span class="math inline">\(\hat{a}\)</span> and provides posterior estimates for the first and second moments of <span class="math inline">\(\theta_j\)</span>.</p>
 <p>Here, I simulate data from the above distribution and test the speed and accuracy at different starting points for the optimization problem.</p>
 <pre class="r"><code>pi0 = .8
-a = 1/16</code></pre>
+a = 1/16
+s_alpha = 2
+s_beta = 10</code></pre>
 <p>The true value for <span class="math inline">\(\pi_0\)</span> is 0.8, and the true value for <span class="math inline">\(a\)</span> is 0.0625.</p>
 <div id="simulation-study-results-1" class="section level2">
 <h2>Simulation Study Results</h2>
-<p>The plots below detail the results of the simulation study. For each of <span class="math inline">\(B = 100\)</span> simulation repetitions, I simulate <span class="math inline">\(n = 1000\)</span> observations <span class="math inline">\(x_j\)</span> and standard errors <span class="math inline">\(s_j\)</span> from the normal means model.</p>
-<pre class="r"><code>res_list_point_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, bench_name = &quot;Default Start&quot;, pi0 = pi0, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = a), bench_name = &quot;(pi0, a) Start&quot;, pi0 = pi0, a = a),
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 1, a = a), bench_name = &quot;(1, a) Start&quot;, pi0 = pi0, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 0, a = a), bench_name = &quot;(0, a) Start&quot;, pi0 = pi0, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 1e-5), bench_name = &quot;(pi0, 1e-5) Start&quot;, pi0 = pi0, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 50), bench_name = &quot;(pi0, 50) Start&quot;, pi0 = pi0, a = a))
+<p>The plots below detail the results of the simulation study. For each of <span class="math inline">\(B = 100\)</span> simulation repetitions, I simulate <span class="math inline">\(n = 1000\)</span> observations <span class="math inline">\(x_j\)</span> from the point normal means model, where <span class="math inline">\(1 / s_j^2\)</span> are simulated randomly from a Gamma(2, 10) distribution.</p>
+<pre class="r"><code>res_list_point_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, bench_name = &quot;Default Start&quot;, pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = a), bench_name = &quot;(pi0, a) Start&quot;, pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta),
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 1, a = a), bench_name = &quot;(1, a) Start&quot;, pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 0, a = a), bench_name = &quot;(0, a) Start&quot;, pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 1e-5), bench_name = &quot;(pi0, 1e-5) Start&quot;, pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 50), bench_name = &quot;(pi0, 50) Start&quot;, pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta))
 
 compare_res(res_list_point_normal, pi0, a)</code></pre>
 <p><img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1323,6 +1548,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-1.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8cd2cff323c9d3e33224f76e1d0c9a4094ab1eaa/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-1.png" target="_blank">8cd2cff</a>
@@ -1366,6 +1602,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-2.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-2.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1394,6 +1641,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-3.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-3.png" target="_blank">2fbe0ac</a>
@@ -1426,6 +1684,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-4.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-4.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1454,6 +1723,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-5.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-5.png" target="_blank">2fbe0ac</a>
@@ -1486,6 +1766,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-6.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-6.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1516,6 +1807,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-7.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-7.png" target="_blank">2fbe0ac</a>
 </td>
 <td style="text-align:left;">
@@ -1544,6 +1846,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-8.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/2fbe0accba09ecca21c5d90a1cdcd9dae5925952/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-8.png" target="_blank">2fbe0ac</a>
@@ -1606,6 +1919,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-10.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8cd2cff323c9d3e33224f76e1d0c9a4094ab1eaa/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-10.png" target="_blank">8cd2cff</a>
 </td>
 <td style="text-align:left;">
@@ -1651,6 +1975,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-11.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8cd2cff323c9d3e33224f76e1d0c9a4094ab1eaa/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-11.png" target="_blank">8cd2cff</a>
 </td>
 <td style="text-align:left;">
@@ -1679,6 +2014,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-12.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8cd2cff323c9d3e33224f76e1d0c9a4094ab1eaa/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-12.png" target="_blank">8cd2cff</a>
@@ -1711,6 +2057,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-13.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8cd2cff323c9d3e33224f76e1d0c9a4094ab1eaa/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-13.png" target="_blank">8cd2cff</a>
 </td>
 <td style="text-align:left;">
@@ -1739,6 +2096,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-14.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8cd2cff323c9d3e33224f76e1d0c9a4094ab1eaa/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-14.png" target="_blank">8cd2cff</a>
@@ -1771,6 +2139,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-15.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8cd2cff323c9d3e33224f76e1d0c9a4094ab1eaa/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-15.png" target="_blank">8cd2cff</a>
 </td>
 <td style="text-align:left;">
@@ -1801,6 +2180,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-16.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8cd2cff323c9d3e33224f76e1d0c9a4094ab1eaa/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-16.png" target="_blank">8cd2cff</a>
 </td>
 <td style="text-align:left;">
@@ -1813,6 +2203,36 @@ Andrew Goldstein
 </tbody>
 </table>
 <p></details> <img src="figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-17.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-17.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/6ed4ef834c92bcfd852e402c27d950e1ad0e92bc/docs/figure/ebnm_benchmarks.Rmd/unnamed-chunk-6-17.png" target="_blank">6ed4ef8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 </div>
 <div id="analysis-of-results-1" class="section level2">
 <h2>Analysis of Results</h2>
