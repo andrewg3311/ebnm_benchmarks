@@ -189,19 +189,21 @@ Here, I simulate data from the above distribution and test the speed and accurac
 ```{r}
 mu = 0
 a = 1/16
+s_alpha = 2
+s_beta = 10
 ```
 The true value for $\mu$ is `r mu`, and the true value for $a$ is `r a`.
 
 ## Simulation Study Results
-The plots below detail the results of the simulation study. For each of $B = 100$ simulation repetitions, I simulate $n = 1000$ observations $x_j$ and standard errors $s_j$ from the normal means model.
+The plots below detail the results of the simulation study. For each of $B = 100$ simulation repetitions, I simulate $n = 1000$ observations $x_j$ from the normal means model, where $1 / s_j^2$ are simulated randomly from a Gamma(`r s_alpha`, `r s_beta`) distribution.
 
 ```{r}
-res_list_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, bench_name = "Default Start", mu = mu, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = mu, a = a), bench_name = "(mu, a) Start", mu = mu, a = a),
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 1, a = 1), bench_name = "(1, 1) Start", mu = mu, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = -1, a = 1), bench_name = "(-1, 1) Start", mu = mu, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 100, a = a), bench_name = "(100, a) Start", mu = mu, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 0, a = 100), bench_name = "(mu, 100) Start", mu = mu, a = a))
+res_list_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, bench_name = "Default Start", mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = mu, a = a), bench_name = "(mu, a) Start", mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta),
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 1, a = 1), bench_name = "(1, 1) Start", mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = -1, a = 1), bench_name = "(-1, 1) Start", mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 100, a = a), bench_name = "(100, a) Start", mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_normal, B=100, g_start = list(mu = 0, a = 100), bench_name = "(mu, 100) Start", mu = mu, a = a, s_alpha = s_alpha, s_beta = s_beta))
 
 compare_res(res_list_normal, mu, a)
 ```
@@ -234,19 +236,21 @@ Here, I simulate data from the above distribution and test the speed and accurac
 ```{r}
 pi0 = .8
 a = 1/16
+s_alpha = 2
+s_beta = 10
 ```
 The true value for $\pi_0$ is `r pi0`, and the true value for $a$ is `r a`.
 
 ## Simulation Study Results
-The plots below detail the results of the simulation study. For each of $B = 100$ simulation repetitions, I simulate $n = 1000$ observations $x_j$ and standard errors $s_j$ from the normal means model.
+The plots below detail the results of the simulation study. For each of $B = 100$ simulation repetitions, I simulate $n = 1000$ observations $x_j$ from the point normal means model, where $1 / s_j^2$ are simulated randomly from a Gamma(`r s_alpha`, `r s_beta`) distribution.
 
 ```{r}
-res_list_point_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, bench_name = "Default Start", pi0 = pi0, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = a), bench_name = "(pi0, a) Start", pi0 = pi0, a = a),
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 1, a = a), bench_name = "(1, a) Start", pi0 = pi0, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 0, a = a), bench_name = "(0, a) Start", pi0 = pi0, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 1e-5), bench_name = "(pi0, 1e-5) Start", pi0 = pi0, a = a), 
-                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 50), bench_name = "(pi0, 50) Start", pi0 = pi0, a = a))
+res_list_point_normal = list(benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, bench_name = "Default Start", pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = a), bench_name = "(pi0, a) Start", pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta),
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 1, a = a), bench_name = "(1, a) Start", pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = 0, a = a), bench_name = "(0, a) Start", pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 1e-5), bench_name = "(pi0, 1e-5) Start", pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta), 
+                benchmark_ebnm_normal(ebnm_fn = ebnm_point_normal, B=100, g_start = list(pi0 = pi0, a = 50), bench_name = "(pi0, 50) Start", pi0 = pi0, a = a, s_alpha = s_alpha, s_beta = s_beta))
 
 compare_res(res_list_point_normal, pi0, a)
 ```
