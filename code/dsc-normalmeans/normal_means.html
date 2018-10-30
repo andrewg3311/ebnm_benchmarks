@@ -2827,18 +2827,18 @@ DSC:
 <div id=simulate-eb-score_theta class="accordion-section-content">
 <div class="tabs">
 <ul class="tab-links">
-<li class="active"><a href="#simulate-eb-score_theta_datamakerr-9b2feae2">datamaker.R (9b2feae2)</a></li>
+<li class="active"><a href="#simulate-eb-score_theta_datamakerr-df2bf762">datamaker.R (df2bf762)</a></li>
 <li><a href="#simulate-eb-score_theta_runebnmr-1a3f10a5">runebnm.R (1a3f10a5)</a></li>
 <li><a href="#simulate-eb-score_theta_scorer-38c21c1a">score.R (38c21c1a)</a></li>
 </ul>
 <div class="tab-content">
-<div id="simulate-eb-score_theta_datamakerr-9b2feae2" class="tab active">
+<div id="simulate-eb-score_theta_datamakerr-df2bf762" class="tab active">
 <pre><code class="language-r; line-numbers; left-trim; right-trim;">
 
 rnormmix_datamaker = function(args) {
   set.seed(args$seed)
-  non_null = rbinom(args$n, 1, (1 - args$pi0))
-  true_pi0 = 1 - mean(non_null)
+  non_null = (1:args$n) > args$n * args$pi0 # just set first n*pi0 to be null
+  true_pi0 = 1 - mean(non_null) # should be equal to args$pi0
   theta = non_null * rnorm(args$n, 0, 1/sqrt(args$a)) + args$mu
   meta = list(theta = theta, true_pi0 = true_pi0, true_a = args$a, true_mu = args$mu)
   x = rnorm(args$n, theta, args$s)
@@ -2882,18 +2882,18 @@ result = score(est, truth)
 <div id=simulate-eb-score_pi0 class="accordion-section-content">
 <div class="tabs">
 <ul class="tab-links">
-<li class="active"><a href="#simulate-eb-score_pi0_datamakerr-9b2feae2">datamaker.R (9b2feae2)</a></li>
+<li class="active"><a href="#simulate-eb-score_pi0_datamakerr-df2bf762">datamaker.R (df2bf762)</a></li>
 <li><a href="#simulate-eb-score_pi0_runebnmr-1a3f10a5">runebnm.R (1a3f10a5)</a></li>
 <li><a href="#simulate-eb-score_pi0_scorer-38c21c1a">score.R (38c21c1a)</a></li>
 </ul>
 <div class="tab-content">
-<div id="simulate-eb-score_pi0_datamakerr-9b2feae2" class="tab active">
+<div id="simulate-eb-score_pi0_datamakerr-df2bf762" class="tab active">
 <pre><code class="language-r; line-numbers; left-trim; right-trim;">
 
 rnormmix_datamaker = function(args) {
   set.seed(args$seed)
-  non_null = rbinom(args$n, 1, (1 - args$pi0))
-  true_pi0 = 1 - mean(non_null)
+  non_null = (1:args$n) > args$n * args$pi0 # just set first n*pi0 to be null
+  true_pi0 = 1 - mean(non_null) # should be equal to args$pi0
   theta = non_null * rnorm(args$n, 0, 1/sqrt(args$a)) + args$mu
   meta = list(theta = theta, true_pi0 = true_pi0, true_a = args$a, true_mu = args$mu)
   x = rnorm(args$n, theta, args$s)
@@ -2937,18 +2937,18 @@ result = score(est, truth)
 <div id=simulate-eb-score_a class="accordion-section-content">
 <div class="tabs">
 <ul class="tab-links">
-<li class="active"><a href="#simulate-eb-score_a_datamakerr-9b2feae2">datamaker.R (9b2feae2)</a></li>
+<li class="active"><a href="#simulate-eb-score_a_datamakerr-df2bf762">datamaker.R (df2bf762)</a></li>
 <li><a href="#simulate-eb-score_a_runebnmr-1a3f10a5">runebnm.R (1a3f10a5)</a></li>
 <li><a href="#simulate-eb-score_a_scorer-38c21c1a">score.R (38c21c1a)</a></li>
 </ul>
 <div class="tab-content">
-<div id="simulate-eb-score_a_datamakerr-9b2feae2" class="tab active">
+<div id="simulate-eb-score_a_datamakerr-df2bf762" class="tab active">
 <pre><code class="language-r; line-numbers; left-trim; right-trim;">
 
 rnormmix_datamaker = function(args) {
   set.seed(args$seed)
-  non_null = rbinom(args$n, 1, (1 - args$pi0))
-  true_pi0 = 1 - mean(non_null)
+  non_null = (1:args$n) > args$n * args$pi0 # just set first n*pi0 to be null
+  true_pi0 = 1 - mean(non_null) # should be equal to args$pi0
   theta = non_null * rnorm(args$n, 0, 1/sqrt(args$a)) + args$mu
   meta = list(theta = theta, true_pi0 = true_pi0, true_a = args$a, true_mu = args$mu)
   x = rnorm(args$n, theta, args$s)
@@ -2992,18 +2992,18 @@ result = score(est, truth)
 <div id=simulate-eb-score_mu class="accordion-section-content">
 <div class="tabs">
 <ul class="tab-links">
-<li class="active"><a href="#simulate-eb-score_mu_datamakerr-9b2feae2">datamaker.R (9b2feae2)</a></li>
+<li class="active"><a href="#simulate-eb-score_mu_datamakerr-df2bf762">datamaker.R (df2bf762)</a></li>
 <li><a href="#simulate-eb-score_mu_runebnmr-1a3f10a5">runebnm.R (1a3f10a5)</a></li>
 <li><a href="#simulate-eb-score_mu_scorer-38c21c1a">score.R (38c21c1a)</a></li>
 </ul>
 <div class="tab-content">
-<div id="simulate-eb-score_mu_datamakerr-9b2feae2" class="tab active">
+<div id="simulate-eb-score_mu_datamakerr-df2bf762" class="tab active">
 <pre><code class="language-r; line-numbers; left-trim; right-trim;">
 
 rnormmix_datamaker = function(args) {
   set.seed(args$seed)
-  non_null = rbinom(args$n, 1, (1 - args$pi0))
-  true_pi0 = 1 - mean(non_null)
+  non_null = (1:args$n) > args$n * args$pi0 # just set first n*pi0 to be null
+  true_pi0 = 1 - mean(non_null) # should be equal to args$pi0
   theta = non_null * rnorm(args$n, 0, 1/sqrt(args$a)) + args$mu
   meta = list(theta = theta, true_pi0 = true_pi0, true_a = args$a, true_mu = args$mu)
   x = rnorm(args$n, theta, args$s)
