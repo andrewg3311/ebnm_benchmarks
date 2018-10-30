@@ -1,0 +1,99 @@
+from dsc.dsc_database import build_config_db
+
+[deploy_1 (Hashing output files)]
+output: '.sos/.cache/normal_means.io.mpk'
+script: interpreter='/home/andrew/miniconda3/bin/python', suffix='.py'
+	import msgpack
+	from collections import OrderedDict
+	from dsc.utils import sos_hash_output, sos_group_input, chunks as sos_chunks
+	## 1:
+	##   eb: &id001 !!python/tuple [eb, 1]
+	##   score_theta: !!python/tuple [score_theta, 1]
+	##   simulate: &id002 !!python/tuple [simulate, 1]
+	## 2:
+	##   eb: *id001
+	##   score_pi0: !!python/tuple [score_pi0, 2]
+	##   simulate: *id002
+	## 3:
+	##   eb: *id001
+	##   score_mu: !!python/tuple [score_mu, 3]
+	##   simulate: *id002
+	## @profile #via "kernprof -l" and "python -m line_profiler"
+	def prepare_io():
+		
+		__io_db__ = OrderedDict()
+		###
+		# [A]
+		###
+		__pipeline_id__ = '1'
+		__pipeline_name__ = 'a_simulate+a_eb+a_score_theta'
+		# output: '.sos/.cache/normal_means_1.mpk'
+		
+		## Codes for simulate
+		__out_vars__ = ['true_mu', 'data', 'theta', 'true_pi0']
+		mu = [0]
+		n = [1000]
+		pi0 = [0, 0.2, 0.5, 0.8, 1]
+		a = ['1/25', '1/16', '1/4']
+		DSC_REPLICATE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		__a_simulate_output__ = sos_hash_output(['simulate  datamaker.R data:21228a35 theta:1be4afd4 true_mu:48454cb2 true_pi0:0666cf12 DSC_REPLICATE:{} a:{} pi0:{} n:{} mu:{}'.format(_DSC_REPLICATE, _a, _pi0, _n, _mu) for _DSC_REPLICATE in DSC_REPLICATE for _a in a for _pi0 in pi0 for _n in n for _mu in mu])
+		__a_simulate_output__ = ['simulate:{}'.format(item) for item in __a_simulate_output__]
+		__io_db__['simulate:' + str(__pipeline_id__)] = dict([(y, dict([('__pipeline_id__', __pipeline_id__), ('__pipeline_name__', __pipeline_name__), ('__module__', 'simulate'), ('__out_vars__', __out_vars__)] + x[0])) for x, y in zip([([('DSC_REPLICATE', _DSC_REPLICATE), ('a', _a), ('pi0', _pi0), ('n', _n), ('mu', _mu)], None) for _DSC_REPLICATE in DSC_REPLICATE for _a in a for _pi0 in pi0 for _n in n for _mu in mu ], __a_simulate_output__)] + [('__input_output___', ([], __a_simulate_output__)), ('__ext__', 'rds')])
+		
+		## Codes for eb
+		__out_vars__ = ['ebnm_data', 'post_mean', 'g_pi0', 'g_a', 'g_mu']
+		prior = [1]
+		fix_mu = [0, 1]
+		## With variables from: simulate
+		__a_eb_output__ = sos_hash_output(['eb  runebnm.R ebnm_data:e2bb6e8e g_a:257df018 g_mu:971b70e1 g_pi0:f16a5fe2 post_mean:bda327e3 fix_mu:{} prior:{}'.format(_fix_mu, _prior) for _fix_mu in fix_mu for _prior in prior])
+		__a_eb_output__ = ['eb:{}:{}'.format(item, __i__) for item in __a_eb_output__ for __i__ in __a_simulate_output__]
+		__io_db__['eb:' + str(__pipeline_id__)] = dict([(' '.join((y, x[1])), dict([('__pipeline_id__', __pipeline_id__), ('__pipeline_name__', __pipeline_name__), ('__module__', 'eb'), ('__out_vars__', __out_vars__)] + x[0])) for x, y in zip([([('fix_mu', _fix_mu), ('prior', _prior)], f'{__i__}') for _fix_mu in fix_mu for _prior in prior for __i__ in __a_simulate_output__], __a_eb_output__)] + [('__input_output___', (__a_simulate_output__ if __a_simulate_output__ is not None else [], __a_eb_output__)), ('__ext__', 'rds')])
+		
+		## Codes for score_theta
+		__out_vars__ = ['RMSE']
+		## With variables from: simulate, eb
+		__a_score_theta_input__ = sos_group_input(__a_simulate_output__, __a_eb_output__)
+		__a_score_theta_output__ = sos_hash_output(['score_theta  score.R RMSE:003e8acc' ])
+		__a_score_theta_output__ = ['score_theta:{}:{}'.format(item, ':'.join(__i__)) for item in __a_score_theta_output__ for __i__ in sos_chunks(__a_score_theta_input__, 2)]
+		__io_db__['score_theta:' + str(__pipeline_id__)] = dict([(' '.join((y, x[1])), dict([('__pipeline_id__', __pipeline_id__), ('__pipeline_name__', __pipeline_name__), ('__module__', 'score_theta'), ('__out_vars__', __out_vars__)] + x[0])) for x, y in zip([([], f"{' '.join(__i__)}")  for __i__ in sos_chunks(__a_score_theta_input__, 2)], __a_score_theta_output__)] + [('__input_output___', (__a_score_theta_input__ if __a_score_theta_input__ is not None else [], __a_score_theta_output__)), ('__ext__', 'rds')])
+		
+		###
+		# [B]
+		###
+		__pipeline_id__ = '2'
+		__pipeline_name__ = 'a_simulate+a_eb+b_score_pi0'
+		# output: '.sos/.cache/normal_means_2.mpk'
+		
+		## Codes for score_pi0
+		__out_vars__ = ['RMSE']
+		## With variables from: simulate, eb
+		__b_score_pi0_input__ = sos_group_input(__a_simulate_output__, __a_eb_output__)
+		__b_score_pi0_output__ = sos_hash_output(['score_pi0  score.R RMSE:003e8acc' ])
+		__b_score_pi0_output__ = ['score_pi0:{}:{}'.format(item, ':'.join(__i__)) for item in __b_score_pi0_output__ for __i__ in sos_chunks(__b_score_pi0_input__, 2)]
+		__io_db__['score_pi0:' + str(__pipeline_id__)] = dict([(' '.join((y, x[1])), dict([('__pipeline_id__', __pipeline_id__), ('__pipeline_name__', __pipeline_name__), ('__module__', 'score_pi0'), ('__out_vars__', __out_vars__)] + x[0])) for x, y in zip([([], f"{' '.join(__i__)}")  for __i__ in sos_chunks(__b_score_pi0_input__, 2)], __b_score_pi0_output__)] + [('__input_output___', (__b_score_pi0_input__ if __b_score_pi0_input__ is not None else [], __b_score_pi0_output__)), ('__ext__', 'rds')])
+		
+		###
+		# [C]
+		###
+		__pipeline_id__ = '3'
+		__pipeline_name__ = 'a_simulate+a_eb+c_score_mu'
+		# output: '.sos/.cache/normal_means_3.mpk'
+		
+		## Codes for score_mu
+		__out_vars__ = ['RMSE']
+		## With variables from: simulate, eb
+		__c_score_mu_input__ = sos_group_input(__a_simulate_output__, __a_eb_output__)
+		__c_score_mu_output__ = sos_hash_output(['score_mu  score.R RMSE:003e8acc' ])
+		__c_score_mu_output__ = ['score_mu:{}:{}'.format(item, ':'.join(__i__)) for item in __c_score_mu_output__ for __i__ in sos_chunks(__c_score_mu_input__, 2)]
+		__io_db__['score_mu:' + str(__pipeline_id__)] = dict([(' '.join((y, x[1])), dict([('__pipeline_id__', __pipeline_id__), ('__pipeline_name__', __pipeline_name__), ('__module__', 'score_mu'), ('__out_vars__', __out_vars__)] + x[0])) for x, y in zip([([], f"{' '.join(__i__)}")  for __i__ in sos_chunks(__c_score_mu_input__, 2)], __c_score_mu_output__)] + [('__input_output___', (__c_score_mu_input__ if __c_score_mu_input__ is not None else [], __c_score_mu_output__)), ('__ext__', 'rds')])
+		
+		open('.sos/.cache/normal_means.io.mpk', 'wb').write(msgpack.packb(__io_db__))
+	
+	if __name__ == '__main__':
+		prepare_io()
+
+[deploy_2 (Configuring output filenames)]
+parameter: vanilla = False
+input: '.sos/.cache/normal_means.io.mpk'
+output: 'normal_means/normal_means.map.mpk', 'normal_means/normal_means.conf.mpk'
+build_config_db(str(_input[0]), str(_output[0]), str(_output[1]), vanilla = vanilla, jobs = 2)

@@ -1,0 +1,279 @@
+import msgpack
+from collections import OrderedDict
+IO_DB = msgpack.unpackb(open('normal_means/normal_means.conf.mpk', 'rb').read(), encoding = 'utf-8', object_pairs_hook = OrderedDict)
+
+def n2a(col_num, col_abs=False):
+    col_str = ''
+    col_abs = '$' if col_abs else ''
+    while col_num:
+        remainder = col_num % 26
+        if remainder == 0:
+            remainder = 26
+        col_letter = chr(ord('A') + remainder - 1)
+        col_str = col_letter + col_str
+        col_num = int((col_num - 1) / 26)
+    return col_abs + col_str
+
+def empty_log(fn):
+    if fn.with_suffix('.stderr').exists():
+        open(fn.with_suffix('.stderr'), 'w').close()
+    if fn.with_suffix('.stdout').exists():
+        open(fn.with_suffix('.stdout'), 'w').close()
+
+def remove_log(fn):
+    try:
+        if fn.with_suffix('.stderr').stat().st_size == 0:
+            os.remove(fn.with_suffix('.stderr'))
+    except Exception:
+        pass
+    try:
+        if fn.with_suffix('.stdout').stat().st_size == 0:
+            os.remove(fn.with_suffix('.stdout'))
+    except Exception:
+        pass
+
+
+[simulate]
+parameter: DSC_STEP_ID_ = None
+parameter: simulate_output_files = list
+parameter: seed = [1]
+parameter: mu = [0]
+parameter: n = [1000]
+parameter: pi0 = [0, 0.2, 0.5, 0.8, 1]
+parameter: a = ['1/25', '1/16', '1/4']
+parameter: DSC_REPLICATE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+input: for_each = ['seed', 'mu', 'n', 'pi0', 'a', 'DSC_REPLICATE'], concurrent = True
+output: simulate_output_files[_index]
+empty_log(_output)
+
+R: expand = "${ }", workdir = './', stderr = f"{_output:n}.stderr", stdout = f"{_output:n}.stdout"
+  ## r script UUID: ${DSC_STEP_ID_}
+  
+  args <- list()
+  args$a <- ${_a}
+  args$mu <- ${_mu}
+  args$n <- ${_n}
+  args$pi0 <- ${_pi0}
+  args$seed <- ${_seed}
+  DSC_REPLICATE <- ${_DSC_REPLICATE}
+  TIC_D6AF598A <- proc.time()
+  set.seed(DSC_REPLICATE)
+  
+  ## BEGIN DSC CORE
+  rnormmix_datamaker = function(args) {
+    set.seed(args$seed)
+    non_null = rbinom(args$n, 1, (1 - args$pi0))
+    true_pi0 = 1 - mean(non_null)
+    theta = non_null * rnorm(args$n, 0, 1/sqrt(args$a)) + args$true_mu
+    meta = list(theta = theta, true_pi0 = true_pi0, true_a = args$a)
+    x = rnorm(args$n, theta, args$s)
+    input = list(x = x, s = args$s)
+    data = list(meta = meta, input = input)
+    return(data)
+  }
+  data = rnormmix_datamaker(args)
+  ## END DSC CORE
+  
+  saveRDS(list(true_mu=0, data=data, theta=data$meta$theta, true_pi0=data$meta$true_pi0, true_a=data$meta$true_a, DSC_DEBUG=dscrutils::save_session(TIC_D6AF598A, DSC_REPLICATE)), ${_output:r})
+  
+remove_log(_output)
+
+[eb]
+parameter: DSC_STEP_ID_ = None
+parameter: eb_output_files = list
+parameter: prior = [1]
+parameter: fix_mu = [0, 1]
+parameter: eb_input_files = list
+input: dynamic(eb_input_files) , group_by = 1, for_each = ['prior', 'fix_mu'], concurrent = True
+output: eb_output_files[_index]
+empty_log(_output)
+
+R: expand = "${ }", workdir = './', stderr = f"{_output:n}.stderr", stdout = f"{_output:n}.stdout"
+  ## r script UUID: ${DSC_STEP_ID_}
+  library(ebnm)
+  DSC_DCB0A2E1 <- list()
+  DSC_DCB0A2E1 <- dscrutils::load_inputs(c(${paths([_input[i] for i in [0]]):r,}), dscrutils::read_dsc)
+  DSC_REPLICATE <- DSC_DCB0A2E1$DSC_DEBUG$replicate
+  data <- DSC_DCB0A2E1$data
+  args <- list()
+  args$data <- data
+  args$fix_mu <- ${_fix_mu}
+  args$prior <- ${_prior}
+  TIC_DCB0A2E1 <- proc.time()
+  set.seed(DSC_REPLICATE)
+  
+  ## BEGIN DSC CORE
+  library(ebnm)
+  ebnm.wrapper = function(input, args) {
+    if (args$prior == 1) {
+      prior = "point_normal"
+    } else if (args$prior == 2) {
+      prior = "point_laplace"
+    }
+    if (args$fix_mu == 1) {
+      res = ebnm(input$x, input$s, prior, g = list(mu = 0), fix_mu = T)
+    } else {
+      res = ebnm(input$x, input$s, args$prior)
+    }
+    out = list(pm = res$result$PosteriorMean, fitted_g = res$fitted_g, loglik = res$loglik)
+    return(out)
+  }
+  ebnm_data = ebnm.wrapper(data$input, args)
+  ## END DSC CORE
+  
+  saveRDS(list(ebnm_data=ebnm_data, post_mean=ebnm_data$pm, g_pi0=ebnm_data$fitted_g$pi0, g_a=ebnm_data$fitted_g$a, g_mu=ebnm_data$fitted_g$mu, DSC_DEBUG=dscrutils::save_session(TIC_DCB0A2E1, DSC_REPLICATE)), ${_output:r})
+  
+remove_log(_output)
+
+[score_theta]
+parameter: DSC_STEP_ID_ = None
+parameter: score_theta_output_files = list
+parameter: score_theta_input_files = list
+input: dynamic(score_theta_input_files) , group_by = 2, concurrent = True
+output: score_theta_output_files[_index]
+empty_log(_output)
+
+R: expand = "${ }", workdir = './', stderr = f"{_output:n}.stderr", stdout = f"{_output:n}.stdout"
+  ## r script UUID: ${DSC_STEP_ID_}
+  
+  DSC_38C21C1A <- list()
+  DSC_38C21C1A <- dscrutils::load_inputs(c(${paths([_input[i] for i in [0, 1]]):r,}), dscrutils::read_dsc)
+  DSC_REPLICATE <- DSC_38C21C1A$DSC_DEBUG$replicate
+  est <- DSC_38C21C1A$post_mean
+  truth <- DSC_38C21C1A$theta
+  TIC_38C21C1A <- proc.time()
+  set.seed(DSC_REPLICATE)
+  
+  ## BEGIN DSC CORE
+  score = function(est, truth) {
+    return(sqrt(mean((est - truth)^2)))
+  }
+  result = score(est, truth)
+  ## END DSC CORE
+  
+  saveRDS(list(RMSE=result, DSC_DEBUG=dscrutils::save_session(TIC_38C21C1A, DSC_REPLICATE)), ${_output:r})
+  
+remove_log(_output)
+
+[score_pi0]
+parameter: DSC_STEP_ID_ = None
+parameter: score_pi0_output_files = list
+parameter: score_pi0_input_files = list
+input: dynamic(score_pi0_input_files) , group_by = 2, concurrent = True
+output: score_pi0_output_files[_index]
+empty_log(_output)
+
+R: expand = "${ }", workdir = './', stderr = f"{_output:n}.stderr", stdout = f"{_output:n}.stdout"
+  ## r script UUID: ${DSC_STEP_ID_}
+  
+  DSC_38C21C1A <- list()
+  DSC_38C21C1A <- dscrutils::load_inputs(c(${paths([_input[i] for i in [0, 1]]):r,}), dscrutils::read_dsc)
+  DSC_REPLICATE <- DSC_38C21C1A$DSC_DEBUG$replicate
+  est <- DSC_38C21C1A$g_pi0
+  truth <- DSC_38C21C1A$true_pi0
+  TIC_38C21C1A <- proc.time()
+  set.seed(DSC_REPLICATE)
+  
+  ## BEGIN DSC CORE
+  score = function(est, truth) {
+    return(sqrt(mean((est - truth)^2)))
+  }
+  result = score(est, truth)
+  ## END DSC CORE
+  
+  saveRDS(list(RMSE=result, DSC_DEBUG=dscrutils::save_session(TIC_38C21C1A, DSC_REPLICATE)), ${_output:r})
+  
+remove_log(_output)
+
+[score_a]
+parameter: DSC_STEP_ID_ = None
+parameter: score_a_output_files = list
+parameter: score_a_input_files = list
+input: dynamic(score_a_input_files) , group_by = 2, concurrent = True
+output: score_a_output_files[_index]
+empty_log(_output)
+
+R: expand = "${ }", workdir = './', stderr = f"{_output:n}.stderr", stdout = f"{_output:n}.stdout"
+  ## r script UUID: ${DSC_STEP_ID_}
+  
+  DSC_38C21C1A <- list()
+  DSC_38C21C1A <- dscrutils::load_inputs(c(${paths([_input[i] for i in [0, 1]]):r,}), dscrutils::read_dsc)
+  DSC_REPLICATE <- DSC_38C21C1A$DSC_DEBUG$replicate
+  est <- DSC_38C21C1A$g_a
+  truth <- DSC_38C21C1A$true_a
+  TIC_38C21C1A <- proc.time()
+  set.seed(DSC_REPLICATE)
+  
+  ## BEGIN DSC CORE
+  score = function(est, truth) {
+    return(sqrt(mean((est - truth)^2)))
+  }
+  result = score(est, truth)
+  ## END DSC CORE
+  
+  saveRDS(list(RMSE=result, DSC_DEBUG=dscrutils::save_session(TIC_38C21C1A, DSC_REPLICATE)), ${_output:r})
+  
+remove_log(_output)
+
+[score_mu]
+parameter: DSC_STEP_ID_ = None
+parameter: score_mu_output_files = list
+parameter: score_mu_input_files = list
+input: dynamic(score_mu_input_files) , group_by = 2, concurrent = True
+output: score_mu_output_files[_index]
+empty_log(_output)
+
+R: expand = "${ }", workdir = './', stderr = f"{_output:n}.stderr", stdout = f"{_output:n}.stdout"
+  ## r script UUID: ${DSC_STEP_ID_}
+  
+  DSC_38C21C1A <- list()
+  DSC_38C21C1A <- dscrutils::load_inputs(c(${paths([_input[i] for i in [0, 1]]):r,}), dscrutils::read_dsc)
+  DSC_REPLICATE <- DSC_38C21C1A$DSC_DEBUG$replicate
+  est <- DSC_38C21C1A$g_mu
+  truth <- DSC_38C21C1A$true_mu
+  TIC_38C21C1A <- proc.time()
+  set.seed(DSC_REPLICATE)
+  
+  ## BEGIN DSC CORE
+  score = function(est, truth) {
+    return(sqrt(mean((est - truth)^2)))
+  }
+  result = score(est, truth)
+  ## END DSC CORE
+  
+  saveRDS(list(RMSE=result, DSC_DEBUG=dscrutils::save_session(TIC_38C21C1A, DSC_REPLICATE)), ${_output:r})
+  
+remove_log(_output)
+
+[a_simulate (simulate)]
+output: IO_DB['1']['simulate']['output']
+sos_run('simulate', simulate_output_files = IO_DB['1']['simulate']['output'], simulate_input_files = IO_DB['1']['simulate']['input'], DSC_STEP_ID_ = 14807435)
+
+[a_eb (eb)]
+depends: [sos_step('%s_%s' % (n2a(x[1]).lower(), x[0])) for x in IO_DB['1']['eb']['depends']]
+output: IO_DB['1']['eb']['output']
+sos_run('eb', eb_output_files = IO_DB['1']['eb']['output'], eb_input_files = IO_DB['1']['eb']['input'], DSC_STEP_ID_ = 12194393)
+
+[a_score_theta (score_theta)]
+depends: [sos_step('%s_%s' % (n2a(x[1]).lower(), x[0])) for x in IO_DB['1']['score_theta']['depends']]
+output: IO_DB['1']['score_theta']['output']
+sos_run('score_theta', score_theta_output_files = IO_DB['1']['score_theta']['output'], score_theta_input_files = IO_DB['1']['score_theta']['input'], DSC_STEP_ID_ = 97721975)
+
+[b_score_pi0 (score_pi0)]
+depends: [sos_step('%s_%s' % (n2a(x[1]).lower(), x[0])) for x in IO_DB['2']['score_pi0']['depends']]
+output: IO_DB['2']['score_pi0']['output']
+sos_run('score_pi0', score_pi0_output_files = IO_DB['2']['score_pi0']['output'], score_pi0_input_files = IO_DB['2']['score_pi0']['input'], DSC_STEP_ID_ = 97721975)
+
+[c_score_a (score_a)]
+depends: [sos_step('%s_%s' % (n2a(x[1]).lower(), x[0])) for x in IO_DB['3']['score_a']['depends']]
+output: IO_DB['3']['score_a']['output']
+sos_run('score_a', score_a_output_files = IO_DB['3']['score_a']['output'], score_a_input_files = IO_DB['3']['score_a']['input'], DSC_STEP_ID_ = 97721975)
+
+[d_score_mu (score_mu)]
+depends: [sos_step('%s_%s' % (n2a(x[1]).lower(), x[0])) for x in IO_DB['4']['score_mu']['depends']]
+output: IO_DB['4']['score_mu']['output']
+sos_run('score_mu', score_mu_output_files = IO_DB['4']['score_mu']['output'], score_mu_input_files = IO_DB['4']['score_mu']['input'], DSC_STEP_ID_ = 97721975)
+
+[DSC]
+depends: sos_step('a_score_theta'), sos_step('b_score_pi0'), sos_step('c_score_a'), sos_step('d_score_mu')
+output: IO_DB['1']['score_theta']['output'], IO_DB['2']['score_pi0']['output'], IO_DB['3']['score_a']['output'], IO_DB['4']['score_mu']['output']

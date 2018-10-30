@@ -1,0 +1,4 @@
+localhost: localhost
+hosts:
+  localhost:
+    address: localhost
