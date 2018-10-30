@@ -33,7 +33,7 @@
 # precision a, and null component weight pi0.
 simulate: datamaker.R
   # input
-  seed: 1
+  seed: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
   mu: 0
   n: 1000
   pi0: 0, .2, .5, .8, 1
