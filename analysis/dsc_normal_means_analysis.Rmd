@@ -99,3 +99,14 @@ We can see that fixing $\mu := 0$ doesn't have much of an effect on the RMSE (wi
 
 However, most cases have RMSEs well over 1, which is the expected RMSE for simply using $x_j$ for $\widehat{\theta_j}$ (since $x_j \sim \mathcal{N}(\theta_j, 1^2))$.
 
+## Log-Likelihoods
+In this section, we look at the log-likelihoods returned from the `ebnm` function.
+
+Figure 5 below plots the log-likelihoods for all combinations of $\pi_0$, $a$, and whether or not we fixed $\mu := 0$.
+```{r}
+ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = eb.loglik)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle("Figure 5: Log-Likelihoods") + xlab("Fix_mu") + ylab ("log-likelihood")
+```
+We can see that estimating $\mu$ has little to no effect on the resulting log-likelihood.
+
