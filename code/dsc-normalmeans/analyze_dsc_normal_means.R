@@ -36,4 +36,4 @@ ggplot(dscout_wide, aes(x = factor(simulate.true_pi0), y = eb.g_pi0)) +
 
 
 ggplot(filter(dscout_wide, eb.fix_mu == 0), aes(x = factor(simulate.true_mu), y = eb.g_mu)) +
-  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_a = labels_pi0))
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0))
