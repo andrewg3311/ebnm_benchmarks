@@ -364,7 +364,7 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/30b70128eb71338c707de9a47bf7504a1d5efcd2" target="_blank">30b7012</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/a37c30ce8c843a2b450fd393522ec591962358d3" target="_blank">a37c30c</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -406,6 +406,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/a37c30ce8c843a2b450fd393522ec591962358d3/analysis/dsc_normal_means_analysis.Rmd" target="_blank">a37c30c</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-31
+</td>
+<td style="text-align:left;">
+Adding RMSE for theta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/andrewg3311/ebnm_benchmarks/7c5edd87e284aec45e6adb17f26fa59ba78b2dee/docs/dsc_normal_means_analysis.html" target="_blank">7c5edd8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-31
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -560,7 +594,7 @@ View(dscout_wide)</code></pre>
 <div id="parameter-estimation" class="section level2">
 <h2>Parameter Estimation</h2>
 <p>In this section, we investigate our ability to recover the parameter values.</p>
-<p>Figures 1-3 below show our attempts at recovering <span class="math inline">\(a\)</span>, <span class="math inline">\(\pi0\)</span>, and <span class="math inline">\(\mu\)</span>, respectively. For figures 1-2, the top and bottom rows separate between the cases when <span class="math inline">\(\mu\)</span> was fixed at 0 (bottom) or estimated (top). For figure 3, only the cases where <span class="math inline">\(\mu\)</span> was estimated are shown.</p>
+<p>Figures 1-3 below show our attempts at recovering <span class="math inline">\(a\)</span>, <span class="math inline">\(\pi_0\)</span>, and <span class="math inline">\(\mu\)</span>, respectively. For figures 1-2, the top and bottom rows separate between the cases when <span class="math inline">\(\mu\)</span> was fixed at 0 (bottom) or estimated (top). For figure 3, only the cases where <span class="math inline">\(\mu\)</span> was estimated are shown.</p>
 <pre class="r"><code>labels_pi0 = character(length(unique(dscout_wide$simulate.true_pi0)))
 for (i in 1:length(labels_pi0)) {
   labels_pi0[i] = paste(&quot;pi0 = &quot;, unique(dscout_wide$simulate.true_pi0)[i], sep = &quot;&quot;)
@@ -599,6 +633,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/7c5edd87e284aec45e6adb17f26fa59ba78b2dee/docs/figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-1.png" target="_blank">7c5edd8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/cb161f64a93d0ae9deadea3fe1d5a29dbf0ee6f5/docs/figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-1.png" target="_blank">cb161f6</a>
 </td>
 <td style="text-align:left;">
@@ -631,6 +676,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/7c5edd87e284aec45e6adb17f26fa59ba78b2dee/docs/figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-2.png" target="_blank">7c5edd8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-31
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/cb161f64a93d0ae9deadea3fe1d5a29dbf0ee6f5/docs/figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-2.png" target="_blank">cb161f6</a>
@@ -667,6 +723,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/7c5edd87e284aec45e6adb17f26fa59ba78b2dee/docs/figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-3.png" target="_blank">7c5edd8</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/cb161f64a93d0ae9deadea3fe1d5a29dbf0ee6f5/docs/figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-3.png" target="_blank">cb161f6</a>
 </td>
 <td style="text-align:left;">
@@ -679,10 +746,20 @@ Andrew Goldstein
 </tbody>
 </table>
 <p></details></p>
-<p>From these plots, a few things become apparent. First, for larger values of <span class="math inline">\(\pi0\)</span>, our estimates of <span class="math inline">\(a\)</span> become highly inaccurate and extremely inflated. This is due to the estimated <span class="math inline">\(\widehat{\pi0}\)</span> being very slightly smaller than 1, which can result in inflated values of <span class="math inline">\(a\)</span>. I recommend that we add a check for this condition.</p>
-<p>Second, for larger precisions (i.e. our non-null component is more concentrated near its mean), our estimation of <span class="math inline">\(\pi0\)</span> becomes inaccurate very quickly. Some further testing could be beneficial to test at what signal-to-noise ratios this method is reliable.</p>
-<p>Third, when estimating <span class="math inline">\(\pi0\)</span>, simultaneously estimating <span class="math inline">\(\mu\)</span> can lead to more accurate estimates of <span class="math inline">\(\pi0\)</span>, but can also be anti-conservative. In contrast, fixing <span class="math inline">\(\mu\)</span> is often conservative in its estimates when the signal-to-noise ratio is small.</p>
+<p>From these plots, a few things become apparent. First, for larger values of <span class="math inline">\(\pi_0\)</span>, our estimates of <span class="math inline">\(a\)</span> become highly inaccurate and extremely inflated. This is due to the estimated <span class="math inline">\(\widehat{\pi_0}\)</span> being very slightly smaller than 1, which can result in inflated values of <span class="math inline">\(a\)</span>. I recommend that we add a check for this condition.</p>
+<p>Second, for larger precisions (i.e. our non-null component is more concentrated near its mean), our estimation of <span class="math inline">\(\pi_0\)</span> becomes inaccurate very quickly. Some further testing could be beneficial to test at what signal-to-noise ratios this method is reliable.</p>
+<p>Third, when estimating <span class="math inline">\(\pi_0\)</span>, simultaneously estimating <span class="math inline">\(\mu\)</span> can lead to more accurate estimates of <span class="math inline">\(\pi_0\)</span>, but can also be anti-conservative. In contrast, fixing <span class="math inline">\(\mu\)</span> is often conservative in its estimates when the signal-to-noise ratio is small.</p>
 <p>Fourth, when estimating <span class="math inline">\(\mu\)</span>, the method appears to return sensible estimates.</p>
+</div>
+<div id="rmse-of-estimating-effects-theta_j" class="section level2">
+<h2>RMSE of Estimating Effects <span class="math inline">\(\theta_j\)</span></h2>
+<p>In this section, we look at the RMSEs of estimating the true effects, <span class="math inline">\(\theta_j\)</span>, using the posterior means supplied by the <code>ebnm</code> function.</p>
+<p>Figure 4 below plots the RMSEs for all combinations of <span class="math inline">\(\pi_0\)</span>, <span class="math inline">\(a\)</span>, and whether or not we fixed <span class="math inline">\(\mu := 0\)</span>.</p>
+<pre class="r"><code>ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = score_theta)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle(&quot;Figure 4: Estimating Effects&quot;) + xlab(&quot;Fix_mu&quot;) + ylab (&quot;RMSE&quot;)</code></pre>
+<p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /> We can see that fixing <span class="math inline">\(\mu := 0\)</span> doesn’t have much of an effect on the RMSE (with the obvious exception of when all effects are null, so our RMSE is 0). As expected, the RMSE is inversely related to <span class="math inline">\(\pi_0\)</span>, and inversely related to <span class="math inline">\(a\)</span>.</p>
+<p>However, most cases have RMSEs well over 1, which is the expected RMSE for simply using <span class="math inline">\(x_j\)</span> for <span class="math inline">\(\widehat{\theta_j}\)</span> (since <span class="math inline">\(x_j \sim \mathcal{N}(\theta_j, 1^2))\)</span>.</p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
