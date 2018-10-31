@@ -364,10 +364,12 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/8513b809d8321f1a61da7aa3c6b123a7d0d01956" target="_blank">8513b80</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/ebe38a16cc377b94724f7254dc137a913fa663f0" target="_blank">ebe38a1</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
+    Ignored:    .sos/
+    Ignored:    analysis/.sos/
     Ignored:    code/dsc-normalmeans/.Rhistory
 
 Untracked files:
@@ -409,6 +411,40 @@ Message
 Rmd
 </td>
 <td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/ebe38a16cc377b94724f7254dc137a913fa663f0/analysis/dsc_normal_means_analysis.Rmd" target="_blank">ebe38a1</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-31
+</td>
+<td style="text-align:left;">
+Fixing path to DSC data
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/andrewg3311/ebnm_benchmarks/32f2adef03c2d8ef1c361089abfa4f7db6f9a118/docs/dsc_normal_means_analysis.html" target="_blank">32f2ade</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-10-31
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
 <a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/8513b809d8321f1a61da7aa3c6b123a7d0d01956/analysis/dsc_normal_means_analysis.Rmd" target="_blank">8513b80</a>
 </td>
 <td style="text-align:left;">
@@ -445,7 +481,7 @@ library(tidyr)
 library(ggplot2)
 
 # load and reshape data
-dscout = dscquery(dsc.outdir = &quot;../code/normal_means&quot;, 
+dscout = dscquery(dsc.outdir = &quot;../code/dsc-normalmeans/normal_means&quot;, 
                   targets = c(&quot;simulate.true_pi0&quot;, &quot;simulate.true_a&quot;, &quot;simulate.true_mu&quot;, 
                               &quot;eb.prior&quot;, &quot;eb.fix_mu&quot;, &quot;eb.g_pi0&quot;, &quot;eb.g_a&quot;, &quot;eb.g_mu&quot;, 
                               &quot;eb.loglik&quot;, &quot;score.RMSE&quot;))</code></pre>
