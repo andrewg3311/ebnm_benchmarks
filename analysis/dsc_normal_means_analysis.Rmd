@@ -45,7 +45,7 @@ We replicate 10 times for all combinations of parameter values: $\mu \in \{0\}$,
 ## Parameter Estimation
 In this section, we investigate our ability to recover the parameter values.
 
-Figures 1-3 below show our attempts at recovering $a$, $\pi0$, and $\mu$, respectively. For figures 1-2, the top and bottom rows separate between the cases when $\mu$ was fixed at 0 (bottom) or estimated (top). For figure 3, only the cases where $\mu$ was estimated are shown.
+Figures 1-3 below show our attempts at recovering $a$, $\pi_0$, and $\mu$, respectively. For figures 1-2, the top and bottom rows separate between the cases when $\mu$ was fixed at 0 (bottom) or estimated (top). For figure 3, only the cases where $\mu$ was estimated are shown.
 ```{r}
 labels_pi0 = character(length(unique(dscout_wide$simulate.true_pi0)))
 for (i in 1:length(labels_pi0)) {
@@ -78,11 +78,24 @@ ggplot(filter(dscout_wide, eb.fix_mu == 0), aes(x = factor(simulate.true_mu), y 
   ggtitle("Figure 3: Recovering mean mu") + xlab("True mu") + ylab ("Estimated mu")
 ```
 
-From these plots, a few things become apparent. First, for larger values of $\pi0$, our estimates of $a$ become highly inaccurate and extremely inflated. This is due to the estimated $\widehat{\pi0}$ being very slightly smaller than 1, which can result in inflated values of $a$. I recommend that we add a check for this condition.
+From these plots, a few things become apparent. First, for larger values of $\pi_0$, our estimates of $a$ become highly inaccurate and extremely inflated. This is due to the estimated $\widehat{\pi_0}$ being very slightly smaller than 1, which can result in inflated values of $a$. I recommend that we add a check for this condition.
 
-Second, for larger precisions (i.e. our non-null component is more concentrated near its mean), our estimation of $\pi0$ becomes inaccurate very quickly. Some further testing could be beneficial to test at what signal-to-noise ratios this method is reliable.
+Second, for larger precisions (i.e. our non-null component is more concentrated near its mean), our estimation of $\pi_0$ becomes inaccurate very quickly. Some further testing could be beneficial to test at what signal-to-noise ratios this method is reliable.
 
-Third, when estimating $\pi0$, simultaneously estimating $\mu$ can lead to more accurate estimates of $\pi0$, but can also be anti-conservative. In contrast, fixing $\mu$ is often conservative in its estimates when the signal-to-noise ratio is small.
+Third, when estimating $\pi_0$, simultaneously estimating $\mu$ can lead to more accurate estimates of $\pi_0$, but can also be anti-conservative. In contrast, fixing $\mu$ is often conservative in its estimates when the signal-to-noise ratio is small.
 
 Fourth, when estimating $\mu$, the method appears to return sensible estimates.
+
+## RMSE of Estimating Effects $\theta_j$
+In this section, we look at the RMSEs of estimating the true effects, $\theta_j$, using the posterior means supplied by the `ebnm` function.
+
+Figure 4 below plots the RMSEs for all combinations of $\pi_0$, $a$, and whether or not we fixed $\mu := 0$.
+```{r}
+ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = score_theta)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle("Figure 4: Estimating Effects") + xlab("Fix_mu") + ylab ("RMSE")
+```
+We can see that fixing $\mu := 0$ doesn't have much of an effect on the RMSE (with the obvious exception of when all effects are null, so our RMSE is 0). As expected, the RMSE is inversely related to $\pi_0$, and inversely related to $a$.
+
+However, most cases have RMSEs well over 1, which is the expected RMSE for simply using $x_j$ for $\widehat{\theta_j}$ (since $x_j \sim \mathcal{N}(\theta_j, 1^2))$.
 
