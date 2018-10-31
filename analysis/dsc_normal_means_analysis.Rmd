@@ -1,0 +1,88 @@
+---
+title: "Normal Means DSC Analysis"
+author: "Andrew Goldstein"
+date: "October 30, 2018"
+output:
+  workflowr::wflow_html:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, error = T, warning = T, message = F, results = 'asis', fig.align = 'center')
+```
+
+# Introduction
+This code analyzes the results of the DSC replications. Currently, only the `point_normal` prior is tested. 
+
+The `point_normal` prior assumes
+$$
+\begin{aligned}
+\theta_j \stackrel{iid}{\sim} \pi_0 \delta_\mu + (1 - \pi_0)\mathcal{N}\Big(\mu, \frac1a\Big) \\
+x_j \stackrel{\perp}{\sim} \mathcal{N}\Big(\theta_j, s_j^2\Big)
+\end{aligned}
+$$
+By setting $\mu := 0$, we can recover the case where there is a point-mass at 0. By setting $\pi_0 := 0$, we can recover the case where there is no point-mass.
+
+# Analysis
+```{r}
+# Load required packages
+library(dscrutils)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+# load and reshape data
+dscout = dscquery(dsc.outdir = "../code/normal_means", 
+                  targets = c("simulate.true_pi0", "simulate.true_a", "simulate.true_mu", 
+                              "eb.prior", "eb.fix_mu", "eb.g_pi0", "eb.g_a", "eb.g_mu", 
+                              "eb.loglik", "score.RMSE"))
+
+dscout_wide = dscout %>% spread(score, score.RMSE)
+View(dscout_wide)
+```
+We replicate 10 times for all combinations of parameter values: $\mu \in \{0\}$, $\pi_0 \in \{0, .2, .5, .8, 1\}$, $a \in \{1/25, 1/16, 1/4\}$, and we try both estimating $\mu$ and fixing $\mu = 0$. The standard errors $s_j$ were all set to 1.
+
+## Parameter Estimation
+In this section, we investigate our ability to recover the parameter values.
+
+Figures 1-3 below show our attempts at recovering $a$, $\pi0$, and $\mu$, respectively. For figures 1-2, the top and bottom rows separate between the cases when $\mu$ was fixed at 0 (bottom) or estimated (top). For figure 3, only the cases where $\mu$ was estimated are shown.
+```{r}
+labels_pi0 = character(length(unique(dscout_wide$simulate.true_pi0)))
+for (i in 1:length(labels_pi0)) {
+  labels_pi0[i] = paste("pi0 = ", unique(dscout_wide$simulate.true_pi0)[i], sep = "")
+  names(labels_pi0)[i] = unique(dscout_wide$simulate.true_pi0)[i]
+}
+labels_a = character(length(unique(dscout_wide$simulate.true_a)))
+for (i in 1:length(labels_a)) {
+  labels_a[i] = paste("a = ", unique(dscout_wide$simulate.true_a)[i], sep = "")
+  names(labels_a)[i] = unique(dscout_wide$simulate.true_a)[i]
+}
+labels_fix_mu = character(length(unique(dscout_wide$eb.fix_mu)))
+for (i in 1:length(labels_fix_mu)) {
+  labels_fix_mu[i] = paste("fix_mu = ", unique(dscout_wide$eb.fix_mu)[i], sep = "")
+  names(labels_fix_mu)[i] = unique(dscout_wide$eb.fix_mu)[i]
+}
+
+ggplot(dscout_wide, aes(x = factor(simulate.true_a), y = eb.g_a)) +
+  geom_boxplot() + facet_grid(eb.fix_mu ~ simulate.true_pi0, labeller = labeller(simulate.true_pi0 = labels_pi0, eb.fix_mu = labels_fix_mu)) +
+  ggtitle("Figure 1: Recovering precision a") + xlab("True a") + ylab ("Estimated a")
+
+
+ggplot(dscout_wide, aes(x = factor(simulate.true_pi0), y = eb.g_pi0)) +
+  geom_boxplot() + facet_grid(eb.fix_mu ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, eb.fix_mu = labels_fix_mu))+ 
+  ggtitle("Figure 2: Recovering null component pi0") + xlab("True pi0") + ylab ("Estimated pi0")
+
+
+ggplot(filter(dscout_wide, eb.fix_mu == 0), aes(x = factor(simulate.true_mu), y = eb.g_mu)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle("Figure 3: Recovering mean mu") + xlab("True mu") + ylab ("Estimated mu")
+```
+
+From these plots, a few things become apparent. First, for larger values of $\pi0$, our estimates of $a$ become highly inaccurate and extremely inflated. This is due to the estimated $\widehat{\pi0}$ being very slightly smaller than 1, which can result in inflated values of $a$. I recommend that we add a check for this condition.
+
+Second, for larger precisions (i.e. our non-null component is more concentrated near its mean), our estimation of $\pi0$ becomes inaccurate very quickly. Some further testing could be beneficial to test at what signal-to-noise ratios this method is reliable.
+
+Third, when estimating $\pi0$, simultaneously estimating $\mu$ can lead to more accurate estimates of $\pi0$, but can also be anti-conservative. In contrast, fixing $\mu$ is often conservative in its estimates when the signal-to-noise ratio is small.
+
+Fourth, when estimating $\mu$, the method appears to return sensible estimates.
+
