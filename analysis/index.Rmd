@@ -7,3 +7,5 @@ output:
 ---
 
 Welcome to my research website.
+
+Click [here](dsc_normal_means_analysis.html) for DSC results.
