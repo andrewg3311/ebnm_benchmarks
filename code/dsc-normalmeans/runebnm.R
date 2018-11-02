@@ -10,7 +10,7 @@ ebnm.wrapper = function(x, s, prior_in, fix_mu_in) {
   } else if (prior_in == 2) {
     prior = "point_laplace"
   }
-  if (ix_mu_in == 1) {
+  if (fix_mu_in == 1) {
     res = ebnm(x, s, prior, g = list(mu = 0), fix_mu = T)
   } else {
     res = ebnm(x, s, prior, g = NULL, fix_mu = F)
