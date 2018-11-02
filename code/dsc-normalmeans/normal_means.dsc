@@ -16,10 +16,8 @@
 # $g_a    estimate of a
 # $g_mu    estimate of mu
 # $ll     log-likelihood
-# $RMSE_theta    mean square error of effect estimates
-# $RMSE_pi0         MSE of pi0 estimate
-# RMSE_a         MSE of a estimate
-# RMSE_mu         MSE of mu estimate
+# $RMSE    mean square error of given estimate
+# $MAD		median absolute deviation of given estimate
 #
 # MODULE TYPES
 # name         inputs             outputs
@@ -38,21 +36,22 @@ simulate: datamaker.R
   n: 1000
   pi0: 0, .2, .5, .8, 1
   a: 1/25, 1/16, 1/4
-  @ALIAS: args = List()
+
   # output
   $data: data
-  $theta: data$meta$theta
-  $true_pi0: data$meta$true_pi0
-  $true_a: data$meta$true_a
-  $true_mu: data$meta$true_mu
+  $theta: data$theta
+  $true_pi0: data$true_pi0
+  $true_a: data$true_a
+  $true_mu: data$true_mu
 
 # Run ebnm on problem
 eb: runebnm.R
     # input
+    x: $data$x
+    s: $data$s
     prior_in: 1
     fix_mu_in: 0, 1
-    @ALIAS: args = List()
-    data: $data
+    
     # output
     $ebnm_data: ebnm_data
     $prior: ebnm_data$prior
@@ -63,29 +62,39 @@ eb: runebnm.R
     $g_mu: ebnm_data$fitted_g$mu
     $loglik: ebnm_data$loglik
 
-# Score by MSE
+# Score by MSE and MAD
 score_theta: score.R
     est: $post_mean
     truth: $theta
-    $RMSE: result
+    $RMSE: result$MSE
+    $MAD: result$MAD
 
 score_pi0: score.R
     est: $g_pi0
     truth: $true_pi0
-    $RMSE: result
+    $RMSE: result$MSE
+    $MAD: result$MAD
 
 score_a: score.R
     est: $g_a
     truth: $true_a
-    $RMSE: result
+    $RMSE: result$MSE
+    $MAD: result$MAD
 
 score_mu: score.R
     est: $g_mu
     truth: $true_mu
-    $RMSE: result
+    $RMSE: result$MSE
+    $MAD: result$MAD
+
+score_MLE: score.R
+	est: $data$x
+	truth: $theta
+	RMSE: result$MSE
+    $MAD: result$MAD
 
 
 DSC:
   define:
-    score: score_theta, score_pi0, score_a, score_mu
+    score: score_theta, score_pi0, score_a, score_mu, score_MLE
   run: simulate * eb * score
