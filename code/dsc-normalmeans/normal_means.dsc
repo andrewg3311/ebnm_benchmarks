@@ -64,6 +64,8 @@ eb: runebnm.R
     $g_a: ebnm_data$fitted_g$a
     $g_mu: ebnm_data$fitted_g$mu
     $loglik: ebnm_data$loglik
+    # add below as a "hack" to try to get dsc-query to work
+    $x_out: x
 
 # Score by MSE and MAD
 score_theta_RMSE: score.R
@@ -82,54 +84,6 @@ score_theta_MAD: score.R
     # output
     $score: result$MAD
 
-score_pi0_RMSE: score.R
-    # input
-    est: $g_pi0
-    truth: $true_pi0
-
-    # output
-    $score: result$RMSE
-
-score_pi0_MAD: score.R
-    # input
-    est: $g_pi0
-    truth: $true_pi0
-
-    # output
-    $score: result$MAD
-
-score_a_RMSE: score.R
-    #input
-    est: $g_a
-    truth: $true_a
-
-    # output
-    $score: result$RMSE
-
-score_a_MAD: score.R
-    #input
-    est: $g_a
-    truth: $true_a
-
-    # output
-    $score: result$MAD
-
-score_mu_RMSE: score.R
-    # input
-    est: $g_mu
-    truth: $true_mu
-
-    # output
-    $score: result$RMSE
-
-score_mu_MAD: score.R
-    # input
-    est: $g_mu
-    truth: $true_mu
-
-    # output
-    $score: result$MAD
-
 score_MLE_RMSE: score.R
     # input
     est: $x
@@ -140,7 +94,7 @@ score_MLE_RMSE: score.R
 
 score_MLE_MAD: score.R
     # input
-    est: $x
+    est: $x_out
     truth: $theta
 
     # output
@@ -149,5 +103,5 @@ score_MLE_MAD: score.R
 
 DSC:
   define:
-    score: score_theta_RMSE, score_theta_MAD, score_pi0_RMSE, score_pi0_MAD, score_a_RMSE, score_a_MAD, score_mu_RMSE, score_mu_MAD, score_MLE_RMSE, score_MLE_MAD
+    score: score_theta_RMSE, score_MLE_RMSE, score_MLE_MAD
   run: simulate * eb * score
