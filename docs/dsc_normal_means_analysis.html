@@ -340,7 +340,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2018-11-01</p>
+<p><strong>Last updated:</strong> 2018-11-02</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -364,7 +364,7 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/921e49b6da6dbbee0d541ef501be3fa8693399db" target="_blank">921e49b</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/andrewg3311/ebnm_benchmarks/tree/75a1e86c7c69831155b88697d9f509d47f839b92" target="_blank">75a1e86</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -374,9 +374,1671 @@ Ignored files:
 
 Untracked files:
     Untracked:  .gitattributes
+    Untracked:  code/dsc-normalmeans/normal_means/score_MLE_MAD/
+    Untracked:  code/dsc-normalmeans/normal_means/score_MLE_RMSE/
+    Untracked:  code/dsc-normalmeans/normal_means/score_theta_MAD/
+    Untracked:  code/dsc-normalmeans/normal_means/score_theta_RMSE/
 
 Unstaged changes:
     Modified:   .gitignore
+    Modified:   code/dsc-normalmeans/.sos/.cache/normal_means.io.meta.mpk
+    Modified:   code/dsc-normalmeans/.sos/.cache/normal_means.io.mpk
+    Modified:   code/dsc-normalmeans/.sos/step_signatures.db
+    Modified:   code/dsc-normalmeans/.sos/transcript.txt
+    Modified:   code/dsc-normalmeans/.sos/workflow_signatures.db
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_100_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_100_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_101_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_101_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_102_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_102_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_103_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_103_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_104_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_104_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_105_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_105_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_106_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_106_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_107_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_107_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_108_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_108_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_109_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_109_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_10_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_10_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_110_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_110_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_111_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_111_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_112_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_112_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_113_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_113_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_114_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_114_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_115_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_115_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_116_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_116_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_117_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_117_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_118_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_118_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_119_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_119_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_11_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_11_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_120_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_120_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_121_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_121_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_122_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_122_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_123_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_123_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_124_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_124_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_125_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_125_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_126_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_126_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_127_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_127_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_128_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_128_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_129_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_129_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_12_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_12_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_130_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_130_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_131_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_131_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_132_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_132_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_133_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_133_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_134_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_134_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_135_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_135_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_136_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_136_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_137_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_137_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_138_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_138_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_139_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_139_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_13_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_13_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_140_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_140_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_141_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_141_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_142_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_142_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_143_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_143_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_144_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_144_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_145_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_145_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_146_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_146_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_147_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_147_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_148_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_148_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_149_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_149_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_14_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_14_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_150_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_150_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_15_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_15_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_16_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_16_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_17_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_17_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_18_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_18_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_19_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_19_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_1_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_1_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_20_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_20_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_21_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_21_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_22_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_22_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_23_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_23_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_24_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_24_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_25_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_25_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_26_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_26_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_27_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_27_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_28_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_28_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_29_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_29_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_2_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_2_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_30_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_30_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_31_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_31_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_32_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_32_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_33_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_33_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_34_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_34_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_35_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_35_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_36_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_36_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_37_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_37_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_38_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_38_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_39_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_39_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_3_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_3_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_40_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_40_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_41_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_41_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_42_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_42_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_43_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_43_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_44_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_44_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_45_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_45_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_46_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_46_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_47_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_47_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_48_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_48_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_49_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_49_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_4_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_4_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_50_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_50_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_51_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_51_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_52_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_52_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_53_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_53_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_54_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_54_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_55_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_55_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_56_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_56_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_57_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_57_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_58_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_58_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_59_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_59_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_5_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_5_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_60_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_60_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_61_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_61_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_62_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_62_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_63_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_63_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_64_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_64_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_65_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_65_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_66_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_66_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_67_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_67_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_68_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_68_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_69_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_69_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_6_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_6_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_70_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_70_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_71_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_71_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_72_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_72_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_73_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_73_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_74_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_74_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_75_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_75_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_76_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_76_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_77_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_77_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_78_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_78_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_79_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_79_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_7_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_7_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_80_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_80_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_81_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_81_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_82_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_82_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_83_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_83_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_84_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_84_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_85_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_85_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_86_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_86_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_87_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_87_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_88_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_88_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_89_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_89_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_8_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_8_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_90_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_90_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_91_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_91_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_92_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_92_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_93_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_93_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_94_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_94_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_95_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_95_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_96_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_96_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_97_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_97_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_98_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_98_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_99_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_99_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_9_eb_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/eb/simulate_9_eb_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/normal_means.conf.mpk
+    Modified:   code/dsc-normalmeans/normal_means/normal_means.db
+    Modified:   code/dsc-normalmeans/normal_means/normal_means.map.mpk
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_100_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_100_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_101_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_101_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_102_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_102_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_103_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_103_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_104_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_104_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_105_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_105_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_106_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_106_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_107_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_107_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_108_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_108_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_109_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_109_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_10_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_10_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_110_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_110_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_111_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_111_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_112_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_112_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_113_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_113_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_114_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_114_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_115_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_115_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_116_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_116_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_117_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_117_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_118_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_118_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_119_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_119_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_11_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_11_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_120_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_120_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_121_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_121_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_122_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_122_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_123_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_123_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_124_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_124_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_125_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_125_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_126_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_126_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_127_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_127_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_128_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_128_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_129_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_129_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_12_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_12_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_130_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_130_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_131_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_131_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_132_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_132_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_133_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_133_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_134_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_134_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_135_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_135_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_136_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_136_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_137_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_137_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_138_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_138_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_139_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_139_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_13_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_13_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_140_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_140_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_141_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_141_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_142_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_142_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_143_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_143_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_144_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_144_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_145_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_145_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_146_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_146_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_147_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_147_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_148_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_148_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_149_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_149_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_14_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_14_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_150_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_150_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_15_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_15_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_16_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_16_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_17_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_17_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_18_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_18_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_19_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_19_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_1_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_1_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_20_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_20_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_21_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_21_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_22_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_22_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_23_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_23_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_24_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_24_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_25_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_25_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_26_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_26_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_27_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_27_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_28_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_28_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_29_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_29_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_2_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_2_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_30_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_30_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_31_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_31_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_32_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_32_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_33_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_33_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_34_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_34_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_35_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_35_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_36_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_36_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_37_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_37_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_38_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_38_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_39_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_39_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_3_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_3_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_40_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_40_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_41_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_41_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_42_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_42_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_43_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_43_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_44_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_44_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_45_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_45_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_46_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_46_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_47_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_47_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_48_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_48_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_49_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_49_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_4_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_4_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_50_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_50_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_51_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_51_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_52_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_52_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_53_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_53_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_54_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_54_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_55_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_55_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_56_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_56_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_57_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_57_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_58_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_58_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_59_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_59_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_5_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_5_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_60_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_60_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_61_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_61_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_62_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_62_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_63_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_63_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_64_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_64_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_65_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_65_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_66_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_66_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_67_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_67_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_68_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_68_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_69_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_69_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_6_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_6_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_70_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_70_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_71_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_71_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_72_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_72_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_73_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_73_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_74_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_74_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_75_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_75_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_76_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_76_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_77_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_77_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_78_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_78_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_79_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_79_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_7_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_7_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_80_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_80_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_81_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_81_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_82_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_82_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_83_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_83_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_84_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_84_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_85_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_85_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_86_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_86_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_87_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_87_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_88_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_88_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_89_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_89_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_8_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_8_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_90_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_90_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_91_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_91_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_92_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_92_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_93_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_93_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_94_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_94_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_95_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_95_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_96_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_96_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_97_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_97_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_98_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_98_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_99_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_99_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_9_eb_1_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_a/simulate_9_eb_2_score_a_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_100_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_100_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_101_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_101_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_102_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_102_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_103_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_103_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_104_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_104_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_105_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_105_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_106_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_106_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_107_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_107_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_108_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_108_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_109_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_109_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_10_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_10_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_110_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_110_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_111_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_111_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_112_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_112_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_113_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_113_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_114_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_114_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_115_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_115_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_116_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_116_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_117_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_117_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_118_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_118_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_119_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_119_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_11_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_11_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_120_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_120_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_121_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_121_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_122_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_122_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_123_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_123_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_124_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_124_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_125_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_125_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_126_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_126_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_127_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_127_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_128_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_128_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_129_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_129_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_12_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_12_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_130_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_130_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_131_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_131_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_132_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_132_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_133_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_133_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_134_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_134_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_135_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_135_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_136_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_136_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_137_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_137_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_138_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_138_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_139_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_139_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_13_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_13_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_140_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_140_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_141_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_141_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_142_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_142_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_143_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_143_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_144_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_144_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_145_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_145_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_146_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_146_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_147_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_147_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_148_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_148_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_149_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_149_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_14_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_14_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_150_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_150_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_15_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_15_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_16_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_16_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_17_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_17_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_18_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_18_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_19_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_19_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_1_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_1_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_20_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_20_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_21_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_21_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_22_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_22_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_23_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_23_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_24_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_24_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_25_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_25_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_26_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_26_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_27_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_27_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_28_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_28_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_29_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_29_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_2_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_2_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_30_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_30_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_31_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_31_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_32_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_32_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_33_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_33_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_34_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_34_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_35_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_35_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_36_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_36_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_37_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_37_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_38_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_38_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_39_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_39_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_3_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_3_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_40_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_40_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_41_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_41_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_42_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_42_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_43_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_43_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_44_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_44_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_45_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_45_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_46_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_46_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_47_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_47_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_48_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_48_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_49_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_49_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_4_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_4_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_50_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_50_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_51_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_51_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_52_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_52_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_53_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_53_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_54_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_54_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_55_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_55_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_56_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_56_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_57_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_57_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_58_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_58_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_59_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_59_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_5_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_5_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_60_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_60_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_61_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_61_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_62_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_62_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_63_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_63_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_64_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_64_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_65_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_65_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_66_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_66_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_67_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_67_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_68_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_68_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_69_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_69_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_6_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_6_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_70_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_70_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_71_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_71_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_72_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_72_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_73_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_73_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_74_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_74_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_75_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_75_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_76_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_76_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_77_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_77_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_78_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_78_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_79_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_79_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_7_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_7_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_80_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_80_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_81_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_81_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_82_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_82_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_83_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_83_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_84_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_84_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_85_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_85_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_86_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_86_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_87_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_87_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_88_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_88_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_89_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_89_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_8_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_8_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_90_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_90_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_91_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_91_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_92_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_92_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_93_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_93_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_94_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_94_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_95_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_95_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_96_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_96_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_97_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_97_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_98_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_98_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_99_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_99_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_9_eb_1_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_mu/simulate_9_eb_2_score_mu_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_100_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_100_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_101_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_101_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_102_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_102_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_103_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_103_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_104_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_104_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_105_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_105_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_106_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_106_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_107_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_107_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_108_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_108_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_109_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_109_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_10_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_10_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_110_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_110_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_111_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_111_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_112_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_112_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_113_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_113_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_114_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_114_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_115_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_115_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_116_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_116_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_117_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_117_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_118_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_118_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_119_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_119_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_11_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_11_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_120_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_120_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_121_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_121_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_122_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_122_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_123_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_123_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_124_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_124_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_125_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_125_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_126_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_126_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_127_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_127_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_128_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_128_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_129_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_129_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_12_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_12_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_130_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_130_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_131_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_131_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_132_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_132_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_133_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_133_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_134_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_134_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_135_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_135_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_136_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_136_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_137_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_137_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_138_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_138_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_139_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_139_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_13_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_13_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_140_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_140_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_141_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_141_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_142_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_142_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_143_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_143_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_144_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_144_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_145_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_145_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_146_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_146_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_147_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_147_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_148_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_148_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_149_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_149_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_14_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_14_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_150_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_150_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_15_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_15_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_16_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_16_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_17_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_17_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_18_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_18_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_19_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_19_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_1_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_1_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_20_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_20_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_21_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_21_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_22_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_22_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_23_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_23_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_24_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_24_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_25_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_25_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_26_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_26_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_27_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_27_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_28_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_28_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_29_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_29_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_2_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_2_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_30_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_30_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_31_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_31_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_32_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_32_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_33_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_33_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_34_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_34_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_35_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_35_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_36_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_36_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_37_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_37_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_38_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_38_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_39_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_39_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_3_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_3_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_40_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_40_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_41_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_41_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_42_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_42_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_43_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_43_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_44_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_44_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_45_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_45_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_46_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_46_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_47_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_47_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_48_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_48_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_49_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_49_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_4_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_4_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_50_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_50_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_51_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_51_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_52_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_52_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_53_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_53_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_54_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_54_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_55_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_55_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_56_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_56_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_57_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_57_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_58_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_58_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_59_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_59_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_5_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_5_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_60_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_60_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_61_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_61_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_62_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_62_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_63_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_63_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_64_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_64_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_65_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_65_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_66_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_66_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_67_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_67_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_68_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_68_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_69_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_69_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_6_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_6_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_70_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_70_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_71_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_71_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_72_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_72_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_73_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_73_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_74_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_74_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_75_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_75_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_76_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_76_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_77_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_77_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_78_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_78_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_79_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_79_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_7_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_7_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_80_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_80_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_81_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_81_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_82_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_82_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_83_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_83_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_84_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_84_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_85_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_85_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_86_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_86_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_87_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_87_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_88_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_88_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_89_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_89_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_8_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_8_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_90_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_90_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_91_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_91_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_92_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_92_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_93_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_93_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_94_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_94_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_95_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_95_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_96_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_96_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_97_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_97_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_98_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_98_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_99_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_99_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_9_eb_1_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_pi0/simulate_9_eb_2_score_pi0_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_100_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_100_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_101_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_101_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_102_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_102_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_103_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_103_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_104_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_104_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_105_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_105_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_106_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_106_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_107_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_107_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_108_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_108_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_109_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_109_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_10_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_10_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_110_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_110_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_111_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_111_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_112_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_112_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_113_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_113_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_114_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_114_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_115_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_115_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_116_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_116_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_117_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_117_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_118_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_118_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_119_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_119_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_11_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_11_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_120_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_120_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_121_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_121_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_122_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_122_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_123_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_123_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_124_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_124_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_125_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_125_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_126_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_126_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_127_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_127_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_128_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_128_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_129_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_129_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_12_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_12_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_130_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_130_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_131_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_131_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_132_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_132_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_133_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_133_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_134_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_134_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_135_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_135_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_136_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_136_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_137_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_137_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_138_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_138_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_139_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_139_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_13_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_13_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_140_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_140_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_141_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_141_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_142_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_142_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_143_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_143_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_144_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_144_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_145_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_145_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_146_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_146_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_147_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_147_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_148_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_148_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_149_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_149_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_14_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_14_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_150_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_150_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_15_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_15_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_16_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_16_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_17_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_17_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_18_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_18_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_19_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_19_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_1_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_1_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_20_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_20_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_21_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_21_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_22_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_22_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_23_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_23_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_24_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_24_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_25_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_25_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_26_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_26_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_27_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_27_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_28_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_28_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_29_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_29_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_2_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_2_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_30_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_30_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_31_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_31_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_32_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_32_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_33_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_33_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_34_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_34_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_35_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_35_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_36_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_36_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_37_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_37_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_38_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_38_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_39_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_39_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_3_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_3_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_40_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_40_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_41_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_41_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_42_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_42_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_43_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_43_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_44_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_44_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_45_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_45_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_46_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_46_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_47_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_47_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_48_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_48_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_49_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_49_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_4_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_4_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_50_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_50_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_51_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_51_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_52_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_52_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_53_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_53_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_54_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_54_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_55_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_55_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_56_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_56_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_57_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_57_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_58_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_58_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_59_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_59_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_5_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_5_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_60_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_60_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_61_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_61_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_62_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_62_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_63_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_63_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_64_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_64_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_65_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_65_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_66_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_66_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_67_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_67_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_68_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_68_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_69_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_69_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_6_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_6_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_70_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_70_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_71_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_71_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_72_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_72_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_73_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_73_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_74_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_74_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_75_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_75_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_76_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_76_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_77_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_77_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_78_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_78_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_79_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_79_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_7_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_7_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_80_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_80_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_81_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_81_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_82_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_82_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_83_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_83_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_84_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_84_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_85_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_85_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_86_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_86_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_87_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_87_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_88_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_88_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_89_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_89_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_8_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_8_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_90_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_90_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_91_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_91_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_92_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_92_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_93_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_93_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_94_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_94_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_95_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_95_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_96_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_96_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_97_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_97_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_98_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_98_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_99_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_99_eb_2_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_9_eb_1_score_theta_1.rds
+    Deleted:    code/dsc-normalmeans/normal_means/score_theta/simulate_9_eb_2_score_theta_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_1.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_10.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_100.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_101.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_102.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_103.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_104.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_105.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_106.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_107.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_108.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_109.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_11.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_110.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_111.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_112.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_113.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_114.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_115.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_116.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_117.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_118.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_119.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_12.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_120.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_121.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_122.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_123.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_124.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_125.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_126.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_127.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_128.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_129.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_13.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_130.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_131.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_132.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_133.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_134.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_135.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_136.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_137.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_138.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_139.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_14.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_140.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_141.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_142.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_143.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_144.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_145.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_146.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_147.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_148.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_149.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_15.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_150.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_16.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_17.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_18.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_19.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_2.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_20.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_21.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_22.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_23.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_24.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_25.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_26.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_27.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_28.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_29.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_3.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_30.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_31.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_32.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_33.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_34.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_35.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_36.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_37.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_38.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_39.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_4.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_40.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_41.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_42.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_43.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_44.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_45.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_46.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_47.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_48.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_49.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_5.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_50.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_51.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_52.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_53.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_54.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_55.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_56.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_57.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_58.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_59.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_6.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_60.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_61.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_62.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_63.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_64.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_65.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_66.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_67.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_68.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_69.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_7.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_70.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_71.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_72.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_73.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_74.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_75.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_76.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_77.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_78.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_79.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_8.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_80.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_81.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_82.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_83.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_84.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_85.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_86.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_87.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_88.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_89.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_9.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_90.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_91.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_92.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_93.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_94.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_95.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_96.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_97.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_98.rds
+    Modified:   code/dsc-normalmeans/normal_means/simulate/simulate_99.rds
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
@@ -405,6 +2067,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/andrewg3311/ebnm_benchmarks/blob/75a1e86c7c69831155b88697d9f509d47f839b92/analysis/dsc_normal_means_analysis.Rmd" target="_blank">75a1e86</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-11-02
+</td>
+<td style="text-align:left;">
+Updating to analyze new DSC results
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/andrewg3311/ebnm_benchmarks/dbe93bced51c621805a3526cdc901ef3e2255c07/docs/dsc_normal_means_analysis.html" target="_blank">dbe93bc</a>
+</td>
+<td style="text-align:left;">
+Andrew Goldstein
+</td>
+<td style="text-align:left;">
+2018-11-01
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -687,9 +2383,9 @@ library(ggplot2)
 dscout = dscquery(dsc.outdir = &quot;./code/dsc-normalmeans/normal_means&quot;, 
                   targets = c(&quot;simulate.true_pi0&quot;, &quot;simulate.true_a&quot;, &quot;simulate.true_mu&quot;, 
                               &quot;eb.prior&quot;, &quot;eb.fix_mu&quot;, &quot;eb.g_pi0&quot;, &quot;eb.g_a&quot;, &quot;eb.g_mu&quot;, 
-                              &quot;eb.loglik&quot;, &quot;score.RMSE&quot;))
+                              &quot;eb.loglik&quot;, &quot;score.score&quot;))
 
-dscout_wide = dscout %&gt;% spread(score, score.RMSE)
+dscout_wide = dscout %&gt;% spread(score, score.score)
 View(dscout_wide)
 # Loading dsc-query output from CSV file.
 # Reading DSC outputs:
@@ -702,8 +2398,8 @@ View(dscout_wide)
 #  - eb.g_a: extracted atomic values
 #  - eb.g_mu: extracted atomic values
 #  - eb.loglik: extracted atomic values
-#  - score.RMSE: extracted atomic values</code></pre>
-<p>We replicate 10 times for all combinations of parameter values: <span class="math inline">\(\mu \in \{0\}\)</span>, <span class="math inline">\(\pi_0 \in \{0, .2, .5, .8, 1\}\)</span>, <span class="math inline">\(a \in \{1/25, 1/16, 1/4\}\)</span>, and we try both estimating <span class="math inline">\(\mu\)</span> and fixing <span class="math inline">\(\mu = 0\)</span>. The standard errors <span class="math inline">\(s_j\)</span> were all set to 1.</p>
+#  - score.score: extracted atomic values</code></pre>
+<p>We replicate 10 times for all combinations of parameter values (with the same seeds for consistency): <span class="math inline">\(\mu \in \{0\}\)</span>, <span class="math inline">\(\pi_0 \in \{0, .2, .5, .8, 1\}\)</span>, <span class="math inline">\(a \in \{1/25, 1/16, 1/4\}\)</span>, and we try both estimating <span class="math inline">\(\mu\)</span> and fixing <span class="math inline">\(\mu := 0\)</span>. The standard errors <span class="math inline">\(s_j\)</span> were all set to 1.</p>
 <div id="parameter-estimation" class="section level2">
 <h2>Parameter Estimation</h2>
 <p>In this section, we investigate our ability to recover the parameter values.</p>
@@ -726,7 +2422,7 @@ for (i in 1:length(labels_fix_mu)) {
 
 ggplot(dscout_wide, aes(x = factor(simulate.true_a), y = eb.g_a)) +
   geom_boxplot() + facet_grid(eb.fix_mu ~ simulate.true_pi0, labeller = labeller(simulate.true_pi0 = labels_pi0, eb.fix_mu = labels_fix_mu)) +
-  ggtitle(&quot;Figure 1: Recovering precision a&quot;) + xlab(&quot;True a&quot;) + ylab (&quot;Estimated a&quot;)</code></pre>
+  ggtitle(&quot;Figure 1a: Recovering precision a&quot;) + xlab(&quot;True a&quot;) + ylab (&quot;Estimated a&quot;)</code></pre>
 <p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-2-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -770,10 +2466,9 @@ Andrew Goldstein
 </table>
 <p></details></p>
 <pre class="r"><code>
-
-ggplot(dscout_wide, aes(x = factor(simulate.true_pi0), y = eb.g_pi0)) +
-  geom_boxplot() + facet_grid(eb.fix_mu ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, eb.fix_mu = labels_fix_mu))+ 
-  ggtitle(&quot;Figure 2: Recovering null component pi0&quot;) + xlab(&quot;True pi0&quot;) + ylab (&quot;Estimated pi0&quot;)</code></pre>
+ggplot(filter(dscout_wide, simulate.true_pi0 != 1), aes(x = factor(simulate.true_a), y = eb.g_a)) +
+  geom_boxplot() + facet_grid(eb.fix_mu ~ simulate.true_pi0, labeller = labeller(simulate.true_pi0 = labels_pi0, eb.fix_mu = labels_fix_mu)) +
+  ggtitle(&quot;Figure 1b: Recovering precision a&quot;) + xlab(&quot;True a&quot;) + ylab (&quot;Estimated a&quot;)</code></pre>
 <p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-2-2.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -817,10 +2512,9 @@ Andrew Goldstein
 </table>
 <p></details></p>
 <pre class="r"><code>
-
-ggplot(filter(dscout_wide, eb.fix_mu == 0), aes(x = factor(simulate.true_mu), y = eb.g_mu)) +
-  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
-  ggtitle(&quot;Figure 3: Recovering mean mu&quot;) + xlab(&quot;True mu&quot;) + ylab (&quot;Estimated mu&quot;)</code></pre>
+ggplot(dscout_wide, aes(x = factor(simulate.true_pi0), y = eb.g_pi0)) +
+  geom_boxplot() + facet_grid(eb.fix_mu ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, eb.fix_mu = labels_fix_mu))+ 
+  ggtitle(&quot;Figure 2: Recovering null component pi0&quot;) + xlab(&quot;True pi0&quot;) + ylab (&quot;Estimated pi0&quot;)</code></pre>
 <p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-3.png" width="672" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-2-3.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -863,18 +2557,24 @@ Andrew Goldstein
 </tbody>
 </table>
 <p></details></p>
-<p>From these plots, a few things become apparent. First, for larger values of <span class="math inline">\(\pi_0\)</span>, our estimates of <span class="math inline">\(a\)</span> become highly inaccurate and extremely inflated. This is due to the estimated <span class="math inline">\(\widehat{\pi_0}\)</span> being very slightly smaller than 1, which can result in inflated values of <span class="math inline">\(a\)</span>. I recommend that we add a check for this condition.</p>
-<p>Second, for larger precisions (i.e. our non-null component is more concentrated near its mean), our estimation of <span class="math inline">\(\pi_0\)</span> becomes inaccurate very quickly. Some further testing could be beneficial to test at what signal-to-noise ratios this method is reliable.</p>
-<p>Third, when estimating <span class="math inline">\(\pi_0\)</span>, simultaneously estimating <span class="math inline">\(\mu\)</span> can lead to more accurate estimates of <span class="math inline">\(\pi_0\)</span>, but can also be anti-conservative. In contrast, fixing <span class="math inline">\(\mu\)</span> is often conservative in its estimates when the signal-to-noise ratio is small.</p>
+<pre class="r"><code>
+ggplot(filter(dscout_wide, eb.fix_mu == 0), aes(x = factor(simulate.true_mu), y = eb.g_mu)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle(&quot;Figure 3: Recovering mean mu&quot;) + xlab(&quot;True mu&quot;) + ylab (&quot;Estimated mu&quot;)</code></pre>
+<p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-2-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>From these plots, a few things become apparent. First, figure 1a shows that for larger values of <span class="math inline">\(\pi_0\)</span>, our estimates of <span class="math inline">\(a\)</span> can become highly inaccurate and extremely inflated. This is due to the estimated <span class="math inline">\(\widehat{\pi_0}\)</span> being very slightly smaller than 1, which can result in inflated values of <span class="math inline">\(a\)</span>. I recommend that we add a check for this condition.</p>
+<p>(Figure 1b removes the case where <span class="math inline">\(\pi_0 = 1\)</span>, so the other cases can be seen more clearly).</p>
+<p>Second, when we simultaneously estimate <span class="math inline">\(\mu\)</span>, our estimate for <span class="math inline">\(\pi_0\)</span> can suffer in the case when <span class="math inline">\(\pi_0 = 1\)</span>.</p>
+<p>Third, when estimating <span class="math inline">\(\pi_0\)</span>, all outliers are below the true value for <span class="math inline">\(\pi_0\)</span>, which suggests the method is more likely to be anti-conservative for estimating <span class="math inline">\(\pi_0\)</span>.</p>
 <p>Fourth, when estimating <span class="math inline">\(\mu\)</span>, the method appears to return sensible estimates.</p>
 </div>
 <div id="rmse-of-estimating-effects-theta_j" class="section level2">
 <h2>RMSE of Estimating Effects <span class="math inline">\(\theta_j\)</span></h2>
 <p>In this section, we look at the RMSEs of estimating the true effects, <span class="math inline">\(\theta_j\)</span>, using the posterior means supplied by the <code>ebnm</code> function.</p>
-<p>Figure 4 below plots the RMSEs for all combinations of <span class="math inline">\(\pi_0\)</span>, <span class="math inline">\(a\)</span>, and whether or not we fixed <span class="math inline">\(\mu := 0\)</span>.</p>
-<pre class="r"><code>ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = score_theta)) +
+<p>Figure 4 below plots the RMSEs and MADs for all combinations of <span class="math inline">\(\pi_0\)</span>, <span class="math inline">\(a\)</span>, and whether or not we fixed <span class="math inline">\(\mu := 0\)</span>.</p>
+<pre class="r"><code>ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = score_theta_RMSE)) +
   geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
-  ggtitle(&quot;Figure 4: Estimating Effects&quot;) + xlab(&quot;Fix_mu&quot;) + ylab (&quot;RMSE&quot;)</code></pre>
+  ggtitle(&quot;Figure 4a: Estimating Effects (Posterior Mean RMSE)&quot;) + xlab(&quot;Fix_mu&quot;) + ylab (&quot;RMSE&quot;)</code></pre>
 <p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-3-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -906,16 +2606,16 @@ Andrew Goldstein
 </tbody>
 </table>
 <p></details></p>
-<p>We can see that fixing <span class="math inline">\(\mu := 0\)</span> doesn’t have much of an effect on the RMSE (with the obvious exception of when all effects are null, so our RMSE is 0). As expected, the RMSE is inversely related to <span class="math inline">\(\pi_0\)</span>, and inversely related to <span class="math inline">\(a\)</span>.</p>
-<p>However, most cases have RMSEs well over 1, which is the expected RMSE for simply using <span class="math inline">\(x_j\)</span> for <span class="math inline">\(\widehat{\theta_j}\)</span> (since <span class="math inline">\(x_j \sim \mathcal{N}(\theta_j, 1^2))\)</span>.</p>
-</div>
-<div id="log-likelihoods" class="section level2">
-<h2>Log-Likelihoods</h2>
-<p>In this section, we look at the log-likelihoods returned from the <code>ebnm</code> function.</p>
-<p>Figure 5 below plots the log-likelihoods for all combinations of <span class="math inline">\(\pi_0\)</span>, <span class="math inline">\(a\)</span>, and whether or not we fixed <span class="math inline">\(\mu := 0\)</span>.</p>
-<pre class="r"><code>ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = eb.loglik)) +
+<pre class="r"><code>
+ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = score_theta_MAD)) +
   geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
-  ggtitle(&quot;Figure 5: Log-Likelihoods&quot;) + xlab(&quot;Fix_mu&quot;) + ylab (&quot;log-likelihood&quot;)</code></pre>
+  ggtitle(&quot;Figure 4b: Estimating Effects (Posterior Mean MAD)&quot;) + xlab(&quot;Fix_mu&quot;) + ylab (&quot;MAD&quot;)</code></pre>
+<p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;" /> We can see that fixing <span class="math inline">\(\mu := 0\)</span> doesn’t have much of an effect on the RMSE (with the obvious exception of when all effects are null, so our RMSE is 0). As expected, the RMSE is inversely related to <span class="math inline">\(\pi_0\)</span>, and inversely related to <span class="math inline">\(a\)</span>.</p>
+<p>Figure 5 below plots the RMSEs and MADs for the MLE estimate, <span class="math inline">\(\hat{\theta_j} = x_j\)</span>. Recall that the standard deviations were <span class="math inline">\(s_j := 1\)</span>.</p>
+<pre class="r"><code>ggplot(dscout_wide, aes(y = score_MLE_RMSE)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle(&quot;Figure 5a: Estimating Effects (MLE RMSE)&quot;) + xlab(&quot;&quot;) + ylab (&quot;RMSE&quot;) + 
+  theme(axis.text.x = element_blank())</code></pre>
 <p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -947,7 +2647,22 @@ Andrew Goldstein
 </tbody>
 </table>
 <p></details></p>
-<p>We can see that estimating <span class="math inline">\(\mu\)</span> has little to no effect on the resulting log-likelihood.</p>
+<pre class="r"><code>
+ggplot(dscout_wide, aes(y = score_MLE_MAD)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle(&quot;Figure 5b: Estimating Effects (MLE MAD)&quot;) + xlab(&quot;&quot;) + ylab (&quot;MAD&quot;) + 
+  theme(axis.text.x = element_blank())</code></pre>
+<p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can see that the posterior mean out-performs the MLE in all cases, when comparing with both RMSE and MAD.</p>
+</div>
+<div id="log-likelihoods" class="section level2">
+<h2>Log-Likelihoods</h2>
+<p>In this section, we look at the log-likelihoods returned from the <code>ebnm</code> function.</p>
+<p>Figure 6 below plots the log-likelihoods for all combinations of <span class="math inline">\(\pi_0\)</span>, <span class="math inline">\(a\)</span>, and whether or not we fixed <span class="math inline">\(\mu := 0\)</span>.</p>
+<pre class="r"><code>ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = eb.loglik)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle(&quot;Figure 6: Log-Likelihoods&quot;) + xlab(&quot;Fix_mu&quot;) + ylab (&quot;log-likelihood&quot;)</code></pre>
+<p><img src="figure/dsc_normal_means_analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /> We can see that estimating <span class="math inline">\(\mu\)</span> has little to no effect on the resulting log-likelihood.</p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
