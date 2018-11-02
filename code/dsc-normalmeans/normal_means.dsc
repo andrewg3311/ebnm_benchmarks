@@ -65,7 +65,7 @@ eb: runebnm.R
     $g_mu: ebnm_data$fitted_g$mu
     $loglik: ebnm_data$loglik
     # add below as a "hack" to try to get dsc-query to work
-    $x_out: x
+    $mle: x
 
 # Score by MSE and MAD
 score_theta_RMSE: score.R
@@ -86,7 +86,7 @@ score_theta_MAD: score.R
 
 score_MLE_RMSE: score.R
     # input
-    est: $x
+    est: $mle
     truth: $theta
 
     # output
@@ -94,7 +94,7 @@ score_MLE_RMSE: score.R
 
 score_MLE_MAD: score.R
     # input
-    est: $x_out
+    est: $mle
     truth: $theta
 
     # output
