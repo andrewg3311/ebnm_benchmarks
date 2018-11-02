@@ -51,7 +51,7 @@ eb: runebnm.R
     s: $data$s
     prior_in: 1
     fix_mu_in: 0, 1
-    
+
     # output
     $ebnm_data: ebnm_data
     $prior: ebnm_data$prior
@@ -90,7 +90,7 @@ score_mu: score.R
 score_MLE: score.R
 	est: $data$x
 	truth: $theta
-	RMSE: result$MSE
+	$RMSE: result$MSE
     $MAD: result$MAD
 
 
