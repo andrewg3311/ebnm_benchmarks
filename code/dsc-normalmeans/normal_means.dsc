@@ -149,5 +149,5 @@ score_MLE_MAD: score.R
 
 DSC:
   define:
-    score: score_theta, score_pi0, score_a, score_mu, score_MLE
+    score: score_theta_RMSE, score_theta_MAD, score_pi0_RMSE, score_pi0_MAD, score_a_RMSE, score_a_MAD, score_mu_RMSE, score_mu_MAD, score_MLE_RMSE, score_MLE_MAD
   run: simulate * eb * score
