@@ -35,12 +35,12 @@ library(ggplot2)
 dscout = dscquery(dsc.outdir = "./code/dsc-normalmeans/normal_means", 
                   targets = c("simulate.true_pi0", "simulate.true_a", "simulate.true_mu", 
                               "eb.prior", "eb.fix_mu", "eb.g_pi0", "eb.g_a", "eb.g_mu", 
-                              "eb.loglik", "score.RMSE"))
+                              "eb.loglik", "score.score"))
 
-dscout_wide = dscout %>% spread(score, score.RMSE)
+dscout_wide = dscout %>% spread(score, score.score)
 View(dscout_wide)
 ```
-We replicate 10 times for all combinations of parameter values: $\mu \in \{0\}$, $\pi_0 \in \{0, .2, .5, .8, 1\}$, $a \in \{1/25, 1/16, 1/4\}$, and we try both estimating $\mu$ and fixing $\mu = 0$. The standard errors $s_j$ were all set to 1.
+We replicate 10 times for all combinations of parameter values (with the same seeds for consistency): $\mu \in \{0\}$, $\pi_0 \in \{0, .2, .5, .8, 1\}$, $a \in \{1/25, 1/16, 1/4\}$, and we try both estimating $\mu$ and fixing $\mu := 0$. The standard errors $s_j$ were all set to 1.
 
 ## Parameter Estimation
 In this section, we investigate our ability to recover the parameter values.
@@ -65,48 +65,69 @@ for (i in 1:length(labels_fix_mu)) {
 
 ggplot(dscout_wide, aes(x = factor(simulate.true_a), y = eb.g_a)) +
   geom_boxplot() + facet_grid(eb.fix_mu ~ simulate.true_pi0, labeller = labeller(simulate.true_pi0 = labels_pi0, eb.fix_mu = labels_fix_mu)) +
-  ggtitle("Figure 1: Recovering precision a") + xlab("True a") + ylab ("Estimated a")
+  ggtitle("Figure 1a: Recovering precision a") + xlab("True a") + ylab ("Estimated a")
 
+ggplot(filter(dscout_wide, simulate.true_pi0 != 1), aes(x = factor(simulate.true_a), y = eb.g_a)) +
+  geom_boxplot() + facet_grid(eb.fix_mu ~ simulate.true_pi0, labeller = labeller(simulate.true_pi0 = labels_pi0, eb.fix_mu = labels_fix_mu)) +
+  ggtitle("Figure 1b: Recovering precision a") + xlab("True a") + ylab ("Estimated a")
 
 ggplot(dscout_wide, aes(x = factor(simulate.true_pi0), y = eb.g_pi0)) +
   geom_boxplot() + facet_grid(eb.fix_mu ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, eb.fix_mu = labels_fix_mu))+ 
   ggtitle("Figure 2: Recovering null component pi0") + xlab("True pi0") + ylab ("Estimated pi0")
-
 
 ggplot(filter(dscout_wide, eb.fix_mu == 0), aes(x = factor(simulate.true_mu), y = eb.g_mu)) +
   geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
   ggtitle("Figure 3: Recovering mean mu") + xlab("True mu") + ylab ("Estimated mu")
 ```
 
-From these plots, a few things become apparent. First, for larger values of $\pi_0$, our estimates of $a$ become highly inaccurate and extremely inflated. This is due to the estimated $\widehat{\pi_0}$ being very slightly smaller than 1, which can result in inflated values of $a$. I recommend that we add a check for this condition.
+From these plots, a few things become apparent. First, figure 1a shows that for larger values of $\pi_0$, our estimates of $a$ can become highly inaccurate and extremely inflated. This is due to the estimated $\widehat{\pi_0}$ being very slightly smaller than 1, which can result in inflated values of $a$. I recommend that we add a check for this condition.
 
-Second, for larger precisions (i.e. our non-null component is more concentrated near its mean), our estimation of $\pi_0$ becomes inaccurate very quickly. Some further testing could be beneficial to test at what signal-to-noise ratios this method is reliable.
+(Figure 1b removes the case where $\pi_0 = 1$, so the other cases can be seen more clearly).
 
-Third, when estimating $\pi_0$, simultaneously estimating $\mu$ can lead to more accurate estimates of $\pi_0$, but can also be anti-conservative. In contrast, fixing $\mu$ is often conservative in its estimates when the signal-to-noise ratio is small.
+Second, when we simultaneously estimate $\mu$, our estimate for $\pi_0$ can suffer in the case when $\pi_0 = 1$.
+
+Third, when estimating $\pi_0$, all outliers are below the true value for $\pi_0$, which suggests the method is more likely to be anti-conservative for estimating $\pi_0$.
 
 Fourth, when estimating $\mu$, the method appears to return sensible estimates.
 
 ## RMSE of Estimating Effects $\theta_j$
 In this section, we look at the RMSEs of estimating the true effects, $\theta_j$, using the posterior means supplied by the `ebnm` function.
 
-Figure 4 below plots the RMSEs for all combinations of $\pi_0$, $a$, and whether or not we fixed $\mu := 0$.
+Figure 4 below plots the RMSEs and MADs for all combinations of $\pi_0$, $a$, and whether or not we fixed $\mu := 0$.
 ```{r}
-ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = score_theta)) +
+ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = score_theta_RMSE)) +
   geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
-  ggtitle("Figure 4: Estimating Effects") + xlab("Fix_mu") + ylab ("RMSE")
+  ggtitle("Figure 4a: Estimating Effects (Posterior Mean RMSE)") + xlab("Fix_mu") + ylab ("RMSE")
+
+ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = score_theta_MAD)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle("Figure 4b: Estimating Effects (Posterior Mean MAD)") + xlab("Fix_mu") + ylab ("MAD")
 ```
 We can see that fixing $\mu := 0$ doesn't have much of an effect on the RMSE (with the obvious exception of when all effects are null, so our RMSE is 0). As expected, the RMSE is inversely related to $\pi_0$, and inversely related to $a$.
 
-However, most cases have RMSEs well over 1, which is the expected RMSE for simply using $x_j$ for $\widehat{\theta_j}$ (since $x_j \sim \mathcal{N}(\theta_j, 1^2))$.
+Figure 5 below plots the RMSEs and MADs for the MLE estimate, $\hat{\theta_j} = x_j$. Recall that the standard deviations were $s_j := 1$.
+```{r}
+ggplot(dscout_wide, aes(y = score_MLE_RMSE)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle("Figure 5a: Estimating Effects (MLE RMSE)") + xlab("") + ylab ("RMSE") + 
+  theme(axis.text.x = element_blank())
+
+ggplot(dscout_wide, aes(y = score_MLE_MAD)) +
+  geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
+  ggtitle("Figure 5b: Estimating Effects (MLE MAD)") + xlab("") + ylab ("MAD") + 
+  theme(axis.text.x = element_blank())
+```
+
+We can see that the posterior mean out-performs the MLE in all cases, when comparing with both RMSE and MAD.
 
 ## Log-Likelihoods
 In this section, we look at the log-likelihoods returned from the `ebnm` function.
 
-Figure 5 below plots the log-likelihoods for all combinations of $\pi_0$, $a$, and whether or not we fixed $\mu := 0$.
+Figure 6 below plots the log-likelihoods for all combinations of $\pi_0$, $a$, and whether or not we fixed $\mu := 0$.
 ```{r}
 ggplot(dscout_wide, aes(x = factor(eb.fix_mu), y = eb.loglik)) +
   geom_boxplot() + facet_grid(simulate.true_pi0 ~ simulate.true_a, labeller = labeller(simulate.true_a = labels_a, simulate.true_pi0 = labels_pi0)) +
-  ggtitle("Figure 5: Log-Likelihoods") + xlab("Fix_mu") + ylab ("log-likelihood")
+  ggtitle("Figure 6: Log-Likelihoods") + xlab("Fix_mu") + ylab ("log-likelihood")
 ```
 We can see that estimating $\mu$ has little to no effect on the resulting log-likelihood.
 
