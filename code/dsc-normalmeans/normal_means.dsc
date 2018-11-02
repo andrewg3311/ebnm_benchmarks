@@ -36,6 +36,7 @@ simulate: datamaker.R
   n: 1000
   pi0: 0, .2, .5, .8, 1
   a: 1/25, 1/16, 1/4
+  s: 1
 
   # output
   $x: data$x
