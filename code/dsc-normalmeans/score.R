@@ -1,7 +1,7 @@
 score = function(est, truth) {
-  MSE = sqrt(mean((est - truth)^2))
+  RMSE = sqrt(mean((est - truth)^2))
   MAD = median(abs(est - truth))
-  return(list(MSE = MSE, MAD = MAD))
+  return(list(RMSE = RMSE, MAD = MAD))
 }
 
 result = score(est, truth)

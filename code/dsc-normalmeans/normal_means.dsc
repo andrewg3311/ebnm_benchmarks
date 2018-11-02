@@ -32,15 +32,15 @@
 simulate: datamaker.R
   # input
   seed: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-  mu: 0
   n: 1000
   pi0: 0, .2, .5, .8, 1
   a: 1/25, 1/16, 1/4
+  mu: 0
   s: 1
 
   # output
   $x: data$x
-  $s: data$s
+  $true_s: data$s
   $data: data
   $theta: data$theta
   $true_pi0: data$true_pi0
@@ -51,7 +51,7 @@ simulate: datamaker.R
 eb: runebnm.R
     # input
     x: $x
-    s: $s
+    s: $true_s
     prior_in: 1
     fix_mu_in: 0, 1
 
@@ -66,49 +66,84 @@ eb: runebnm.R
     $loglik: ebnm_data$loglik
 
 # Score by MSE and MAD
-score_theta: score.R
+score_theta_RMSE: score.R
     # input
     est: $post_mean
     truth: $theta
 
     # output
-    $RMSE: result$MSE
+    $RMSE: result$RMSE
+
+score_theta_MAD: score.R
+    # input
+    est: $post_mean
+    truth: $theta
+
+    # output
     $MAD: result$MAD
 
-score_pi0: score.R
+score_pi0_RMSE: score.R
     # input
     est: $g_pi0
     truth: $true_pi0
 
     # output
-    $RMSE: result$MSE
+    $RMSE: result$RMSE
+
+score_pi0_MAD: score.R
+    # input
+    est: $g_pi0
+    truth: $true_pi0
+
+    # output
     $MAD: result$MAD
 
-score_a: score.R
+score_a_RMSE: score.R
     #input
     est: $g_a
     truth: $true_a
 
     # output
-    $RMSE: result$MSE
+    $RMSE: result$RMSE
+
+score_a_MAD: score.R
+    #input
+    est: $g_a
+    truth: $true_a
+
+    # output
     $MAD: result$MAD
 
-score_mu: score.R
+score_mu_RMSE: score.R
     # input
     est: $g_mu
     truth: $true_mu
 
     # output
-    $RMSE: result$MSE
+    $RMSE: result$RMSE
+
+score_mu_MAD: score.R
+    # input
+    est: $g_mu
+    truth: $true_mu
+
+    # output
     $MAD: result$MAD
 
-score_MLE: score.R
+score_MLE_RMSE: score.R
     # input
     est: $x
     truth: $theta
 
     # output
-    $RMSE: result$MSE
+    $RMSE: result$RMSE
+
+score_MLE_MAD: score.R
+    # input
+    est: $x
+    truth: $theta
+
+    # output
     $MAD: result$MAD
 
 
