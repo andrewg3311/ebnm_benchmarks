@@ -17,4 +17,4 @@ rnormmix_datamaker = function(seed, n, pi0, a, mu, s) {
               true_a = a, true_mu = mu, x = x, s = s))
 }
 
-data = rnormmix_datamaker(args)
+data = rnormmix_datamaker(seed, n, pi0, a, mu, s)

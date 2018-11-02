@@ -19,4 +19,4 @@ ebnm.wrapper = function(x, s, prior_in, fix_mu_in) {
   return(out)
 }
 
-ebnm_data = ebnm.wrapper(data$input, args)
+ebnm_data = ebnm.wrapper(x, s, prior_in, fix_mu_in)
