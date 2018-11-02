@@ -103,5 +103,5 @@ score_MLE_MAD: score.R
 
 DSC:
   define:
-    score: score_theta_RMSE, score_MLE_RMSE, score_MLE_MAD
+    score: score_theta_RMSE, score_theta_MAD, score_MLE_RMSE, score_MLE_MAD
   run: simulate * eb * score
