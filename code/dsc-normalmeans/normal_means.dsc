@@ -72,7 +72,7 @@ score_theta_RMSE: score.R
     truth: $theta
 
     # output
-    $RMSE: result$RMSE
+    $score: result$RMSE
 
 score_theta_MAD: score.R
     # input
@@ -80,7 +80,7 @@ score_theta_MAD: score.R
     truth: $theta
 
     # output
-    $MAD: result$MAD
+    $score: result$MAD
 
 score_pi0_RMSE: score.R
     # input
@@ -88,7 +88,7 @@ score_pi0_RMSE: score.R
     truth: $true_pi0
 
     # output
-    $RMSE: result$RMSE
+    $score: result$RMSE
 
 score_pi0_MAD: score.R
     # input
@@ -96,7 +96,7 @@ score_pi0_MAD: score.R
     truth: $true_pi0
 
     # output
-    $MAD: result$MAD
+    $score: result$MAD
 
 score_a_RMSE: score.R
     #input
@@ -104,7 +104,7 @@ score_a_RMSE: score.R
     truth: $true_a
 
     # output
-    $RMSE: result$RMSE
+    $score: result$RMSE
 
 score_a_MAD: score.R
     #input
@@ -112,7 +112,7 @@ score_a_MAD: score.R
     truth: $true_a
 
     # output
-    $MAD: result$MAD
+    $score: result$MAD
 
 score_mu_RMSE: score.R
     # input
@@ -120,7 +120,7 @@ score_mu_RMSE: score.R
     truth: $true_mu
 
     # output
-    $RMSE: result$RMSE
+    $score: result$RMSE
 
 score_mu_MAD: score.R
     # input
@@ -128,7 +128,7 @@ score_mu_MAD: score.R
     truth: $true_mu
 
     # output
-    $MAD: result$MAD
+    $score: result$MAD
 
 score_MLE_RMSE: score.R
     # input
@@ -136,7 +136,7 @@ score_MLE_RMSE: score.R
     truth: $theta
 
     # output
-    $RMSE: result$RMSE
+    $score: result$RMSE
 
 score_MLE_MAD: score.R
     # input
@@ -144,7 +144,7 @@ score_MLE_MAD: score.R
     truth: $theta
 
     # output
-    $MAD: result$MAD
+    $score: result$MAD
 
 
 DSC:
